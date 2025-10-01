@@ -373,70 +373,76 @@ public class BR_PhotonLobbyManager : MonoBehaviourPunCallbacks {
 
     }
 
-    /// <summary>
-    /// When joined a room.
-    /// </summary>
-    public override void OnJoinedRoom() {
+/// <summary>
+/// When joined a room.
+/// </summary>
+public override void OnJoinedRoom() {
 
-        //  Getting the room's properties.
-        Hashtable roomProperties = PhotonNetwork.CurrentRoom.CustomProperties;
+    //  Getting the room's properties.
+    Hashtable roomProperties = PhotonNetwork.CurrentRoom.CustomProperties;
 
-        //  Game type.
-        string gameType = (string)roomProperties["gametype"];
+    //  Game type.
+    string gameType = (string)roomProperties["gametype"];
 
-        //  Setting the game type according to the room properties.
-        switch (gameType) {
+    //  Setting the game type according to the room properties.
+    switch (gameType) {
 
-            case "Race":
-                BR_API.SetGameType(0);
-                break;
+        case "Race":
+            BR_API.SetGameType(0);
+            break;
 
-            case "Practice":
-                BR_API.SetGameType(1);
-                break;
-
-        }
-
-        //  Adding necessary properties to the player's custom properties.
-        Hashtable hash = PhotonNetwork.LocalPlayer.CustomProperties;
-        hash["Ready"] = false;
-
-        if (BR_API.GetGameType() == 1)
-            hash["Ready"] = true;
-
-        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
-
-        //  Getting the room's scene name.
-        int sceneIndex = (int)roomProperties["scene"];
-
-        BR_MainMenuManager.Instance.SelectScene(sceneIndex);
-
-        //  Laps.
-        int laps = (int)roomProperties["laps"];
-
-        //  Setting target laps.
-        BR_API.SetLapsAmount((int)laps);
-
-        //  Opening the player list panel (In room).
-        OpenMenu(playerListPanel);
-
-        //  Clearing the player list content.
-        ClearPlayerListView();
-
-        //  Clearing the players in room.
-        playersInRoom.Clear();
-
-        //  For each player in the room, add it to the list.
-        foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
-            playersInRoom.Add(player);
-
-        //  Update the player list.
-        UpdatePlayerListView(playersInRoom);
-
-        //  Check ready and start buttons.
-        CheckButtonsInRoom();
+        case "Practice":
+            BR_API.SetGameType(1);
+            break;
 
     }
+
+    //  Adding necessary properties to the player's custom properties.
+    Hashtable hash = PhotonNetwork.LocalPlayer.CustomProperties;
+    
+    // Check if it's a 2-player room for auto-ready
+    if (PhotonNetwork.CurrentRoom.MaxPlayers == 2) {
+        hash["Ready"] = true;  // Auto-ready for 2-player rooms
+    } else {
+        hash["Ready"] = false;
+        
+        if (BR_API.GetGameType() == 1)
+            hash["Ready"] = true;
+    }
+
+    PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+
+    //  Getting the room's scene name.
+    int sceneIndex = (int)roomProperties["scene"];
+
+    BR_MainMenuManager.Instance.SelectScene(sceneIndex);
+
+    //  Laps.
+    int laps = (int)roomProperties["laps"];
+
+    //  Setting target laps.
+    BR_API.SetLapsAmount((int)laps);
+
+    //  Opening the player list panel (In room).
+    OpenMenu(playerListPanel);
+
+    //  Clearing the player list content.
+    ClearPlayerListView();
+
+    //  Clearing the players in room.
+    playersInRoom.Clear();
+
+    //  For each player in the room, add it to the list.
+    foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+        playersInRoom.Add(player);
+
+    //  Update the player list.
+    UpdatePlayerListView(playersInRoom);
+
+    //  Check ready and start buttons.
+    CheckButtonsInRoom();
+
+}
 
     /// <summary>
     /// When failed to join a room.
@@ -609,60 +615,77 @@ public class BR_PhotonLobbyManager : MonoBehaviourPunCallbacks {
 
 #if PHOTON_UNITY_NETWORKING
 
-    /// <summary>
-    /// Checks ready and start game buttons in the room panel.
-    /// </summary>
-    private void CheckButtonsInRoom() {
+/// <summary>
+/// Checks ready and start game buttons in the room panel.
+/// </summary>
+private void CheckButtonsInRoom() {
 
-        //  If we're not the master client, disable the start game button. Only master client can start the game.
-        if (!PhotonNetwork.LocalPlayer.IsMasterClient) {
-
-            //  Disabling the start game button.
-            startGameButton.SetActive(false);
-
-        } else {
-
-            //  Everyone ready?
-            bool allReady = true;
-
-            //  For each player in the room, check their ready statements.
-            foreach (var item in playerListEntries) {
-
-                if (item.Value.PlayerNameText.text != "Waiting Player..." && !item.Value.isPlayerReady)
-                    allReady = false;
-
+    // Auto-start for 2-player rooms when both players are ready
+    if (PhotonNetwork.CurrentRoom.MaxPlayers == 2 && PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.LocalPlayer.IsMasterClient) {
+        bool bothReady = true;
+        foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values) {
+            if (!(bool)player.CustomProperties["Ready"]) {
+                bothReady = false;
+                break;
             }
+        }
+        
+        if (bothReady) {
+            // Start game automatically after 1 second
+            Invoke("StartGameButton", 1f);
+            return; // Exit early since we're auto-starting
+        }
+    }
 
-            //  If game type is race, enable the start game button only if everyone is ready. Master client can't start the game if there are no any other players in the room.
-            if (BR_API.GetGameType() == 0) {
+    //  If we're not the master client, disable the start game button. Only master client can start the game.
+    if (!PhotonNetwork.LocalPlayer.IsMasterClient) {
 
-                if (PhotonNetwork.CurrentRoom.PlayerCount < 2 && !BR_API.GetBots())
-                    startGameButton.SetActive(false);
-                else
-                    startGameButton.SetActive(allReady);
+        //  Disabling the start game button.
+        startGameButton.SetActive(false);
 
-            } else {
+    } else {
 
-                //  If game type is practice, no need to wait everyone's ready statement. Master client can start the game whenever he wants.
-                startGameButton.SetActive(true);
+        //  Everyone ready?
+        bool allReady = true;
 
-            }
+        //  For each player in the room, check their ready statements.
+        foreach (var item in playerListEntries) {
+
+            if (item.Value.PlayerNameText.text != "Waiting Player..." && !item.Value.isPlayerReady)
+                allReady = false;
 
         }
 
-        //  Setting ready button's image color.
-        if ((bool)PhotonNetwork.LocalPlayer.CustomProperties["Ready"])
-            readyOnImage.color = readyOnColor;
-        else
-            readyOnImage.color = Color.gray;
+        //  If game type is race, enable the start game button only if everyone is ready. Master client can't start the game if there are no any other players in the room.
+        if (BR_API.GetGameType() == 0) {
 
-        //  Ready info.
-        if (BR_API.GetGameType() == 0)
-            readyInfo.SetActive(true);
-        else
-            readyInfo.SetActive(false);
+            if (PhotonNetwork.CurrentRoom.PlayerCount < 2 && !BR_API.GetBots())
+                startGameButton.SetActive(false);
+            else
+                startGameButton.SetActive(allReady);
+
+        } else {
+
+            //  If game type is practice, no need to wait everyone's ready statement. Master client can start the game whenever he wants.
+            startGameButton.SetActive(true);
+
+        }
 
     }
+
+    //  Setting ready button's image color.
+    if ((bool)PhotonNetwork.LocalPlayer.CustomProperties["Ready"])
+        readyOnImage.color = readyOnColor;
+    else
+        readyOnImage.color = Color.gray;
+
+    //  Ready info.
+    if (BR_API.GetGameType() == 0)
+        readyInfo.SetActive(true);
+    else
+        readyInfo.SetActive(false);
+
+}
 
 #endif
 
@@ -710,6 +733,73 @@ public class BR_PhotonLobbyManager : MonoBehaviourPunCallbacks {
 #endif
 
     }
+
+
+    /// <summary>
+/// Two player quick matchmaking. Finds a 2-player room with space or creates one.
+/// Automatically starts when 2 players are connected.
+/// </summary>
+public void TwoPlayerQuickMatchButton()
+{
+#if PHOTON_UNITY_NETWORKING
+
+    // Join the lobby if we're not in
+    if (!PhotonNetwork.InLobby)
+        PhotonNetwork.JoinLobby();
+
+    // Set game type to Race
+    BR_API.SetGameType(0);
+
+    // Set laps to 2
+    BR_API.SetLapsAmount(2);
+
+    // Set scene (use 1 for testing, adjust as needed)
+    BR_API.SetScene(1);
+
+    // Opening the joining random room panel
+    OpenMenu(joinRandomRoomPanel);
+
+    // Setting room properties to search for
+    Hashtable expectedRoomProperties = new Hashtable();
+    expectedRoomProperties.Add("gametype", "Race");
+    expectedRoomProperties.Add("laps", 2);
+
+    // Custom properties for lobby visibility
+    string[] customPropertiesForLobby = new string[4];
+    customPropertiesForLobby[0] = "scene";
+    customPropertiesForLobby[1] = "gametype";
+    customPropertiesForLobby[2] = "laps";
+    customPropertiesForLobby[3] = "password";
+
+    // Custom properties for room
+    Hashtable customPropertiesForRoom = new Hashtable();
+    customPropertiesForRoom.Add("scene", BR_API.GetScene());
+    customPropertiesForRoom.Add("gametype", "Race");
+    customPropertiesForRoom.Add("laps", 2);
+    customPropertiesForRoom.Add("password", "");
+
+    // Room options for creating a new room if no match found
+    RoomOptions roomOptions = new RoomOptions { MaxPlayers = 2 };
+    roomOptions.CleanupCacheOnLeave = false;
+    roomOptions.IsOpen = true;
+    roomOptions.IsVisible = true;
+    roomOptions.CustomRoomPropertiesForLobby = customPropertiesForLobby;
+    roomOptions.CustomRoomProperties = customPropertiesForRoom;
+
+    // Try to join random room matching criteria, or create new one
+    PhotonNetwork.JoinRandomOrCreateRoom(
+        expectedRoomProperties,
+        2, // Max players in the room to search for
+        MatchmakingMode.FillRoom,
+        TypedLobby.Default,
+        null,
+        UnityEngine.Random.Range(1000, 9999).ToString(), // Random room name
+        roomOptions
+    );
+
+#endif
+}
+
 
     /// <summary>
     /// Quick matchmaking button. Finds a random room, or creates a new room.
@@ -1444,7 +1534,8 @@ public class BR_PhotonLobbyManager : MonoBehaviourPunCallbacks {
 
 #else
 
-public class BR_PhotonLobbyManager : MonoBehaviour {
+public class BR_PhotonLobbyManager : MonoBehaviour
+{
 }
 
 #endif
