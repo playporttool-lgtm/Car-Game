@@ -458,16 +458,52 @@ public override void OnJoinedRoom() {
 
     }
 
-    /// <summary>
-    /// When failed to join a random room.
-    /// </summary>
-    /// <param name="returnCode"></param>
-    /// <param name="message"></param>
-    public override void OnJoinRandomFailed(short returnCode, string message) {
+  /// <summary>
+/// When failed to join a random room.
+/// </summary>
+/// <param name="returnCode"></param>
+/// <param name="message"></param>
+public override void OnJoinRandomFailed(short returnCode, string message) {
 
+    // Check if this is a 2-player quick match scenario
+    if (BR_API.GetGameType() == 0 && BR_API.GetLapsAmount() == 2) {
+        
+        // Create a 2-player room since no available room was found
+        
+        // Custom properties for lobby visibility
+        string[] customPropertiesForLobby = new string[4];
+        customPropertiesForLobby[0] = "scene";
+        customPropertiesForLobby[1] = "gametype";
+        customPropertiesForLobby[2] = "laps";
+        customPropertiesForLobby[3] = "password";
+
+        // Custom properties for room
+        Hashtable customPropertiesForRoom = new Hashtable();
+        customPropertiesForRoom.Add("scene", BR_API.GetScene());
+        customPropertiesForRoom.Add("gametype", "Race");
+        customPropertiesForRoom.Add("laps", 2);
+        customPropertiesForRoom.Add("password", "");
+
+        // Room options
+        RoomOptions roomOptions = new RoomOptions { MaxPlayers = 2 };
+        roomOptions.CleanupCacheOnLeave = false;
+        roomOptions.IsOpen = true;
+        roomOptions.IsVisible = true;
+        roomOptions.CustomRoomPropertiesForLobby = customPropertiesForLobby;
+        roomOptions.CustomRoomProperties = customPropertiesForRoom;
+
+        // Create room with random name
+        string roomName = "2P_" + UnityEngine.Random.Range(1000, 9999).ToString();
+        PhotonNetwork.CreateRoom(roomName, roomOptions, TypedLobby.Default);
+        
+    } else {
+        
+        // Original behavior for other game modes
         BR_UI_Informer.Instance.Info("NO ANY ACTIVE ROOMS FOR MATCHMAKING\nCREATING A NEW ROOM");
-
+        
     }
+
+}
 
     /// <summary>
     /// When left room.
@@ -735,9 +771,8 @@ private void CheckButtonsInRoom() {
     }
 
 
-    /// <summary>
-/// Two player quick matchmaking. Finds a 2-player room with space or creates one.
-/// Automatically starts when 2 players are connected.
+/// <summary>
+/// Two player quick matchmaking. Always tries to join first, creates only if no room available.
 /// </summary>
 public void TwoPlayerQuickMatchButton()
 {
@@ -764,38 +799,9 @@ public void TwoPlayerQuickMatchButton()
     expectedRoomProperties.Add("gametype", "Race");
     expectedRoomProperties.Add("laps", 2);
 
-    // Custom properties for lobby visibility
-    string[] customPropertiesForLobby = new string[4];
-    customPropertiesForLobby[0] = "scene";
-    customPropertiesForLobby[1] = "gametype";
-    customPropertiesForLobby[2] = "laps";
-    customPropertiesForLobby[3] = "password";
-
-    // Custom properties for room
-    Hashtable customPropertiesForRoom = new Hashtable();
-    customPropertiesForRoom.Add("scene", BR_API.GetScene());
-    customPropertiesForRoom.Add("gametype", "Race");
-    customPropertiesForRoom.Add("laps", 2);
-    customPropertiesForRoom.Add("password", "");
-
-    // Room options for creating a new room if no match found
-    RoomOptions roomOptions = new RoomOptions { MaxPlayers = 2 };
-    roomOptions.CleanupCacheOnLeave = false;
-    roomOptions.IsOpen = true;
-    roomOptions.IsVisible = true;
-    roomOptions.CustomRoomPropertiesForLobby = customPropertiesForLobby;
-    roomOptions.CustomRoomProperties = customPropertiesForRoom;
-
-    // Try to join random room matching criteria, or create new one
-    PhotonNetwork.JoinRandomOrCreateRoom(
-        expectedRoomProperties,
-        2, // Max players in the room to search for
-        MatchmakingMode.FillRoom,
-        TypedLobby.Default,
-        null,
-        UnityEngine.Random.Range(1000, 9999).ToString(), // Random room name
-        roomOptions
-    );
+    // Try to join a random room with these criteria
+    // This will call OnJoinRandomFailed if no room is available
+    PhotonNetwork.JoinRandomRoom(expectedRoomProperties, 2);
 
 #endif
 }
