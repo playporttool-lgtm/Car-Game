@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d31b8d4ab9d510e45a6f5a23fbfac4c1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Scripts/BR_CreateAudioSource.cs
+  uploadId: 769589

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 478b063c3deda684d952fe67b9cba178
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_Port/Mat/Window.mat
+  uploadId: 769589

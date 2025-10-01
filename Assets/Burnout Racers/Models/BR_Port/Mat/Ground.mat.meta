@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8e32c567fadf27b4e8f6c25754269f69
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_Port/Mat/Ground.mat
+  uploadId: 769589

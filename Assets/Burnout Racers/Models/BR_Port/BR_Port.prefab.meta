@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f59fe1ff74480424bb9cd5372d3e8b1c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_Port/BR_Port.prefab
+  uploadId: 769589

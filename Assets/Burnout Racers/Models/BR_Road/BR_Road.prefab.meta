@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 82610afc8c76b714ba11146264e665ee
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_Road/BR_Road.prefab
+  uploadId: 769589

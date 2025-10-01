@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 27fde7aa57930da4b8c542ae9085ea3c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Materials/Wheel Blurs/CTR_WheelBlur.mat
+  uploadId: 769589

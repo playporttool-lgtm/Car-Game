@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 90b572166d0b0644b8ecc77075db021b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Animations & Animators/Countdown.controller
+  uploadId: 769589

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 45d3815a2fb45db44934dde97470b99d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Scenes/Vehicles Test Scene/LightingData.asset
+  uploadId: 769589

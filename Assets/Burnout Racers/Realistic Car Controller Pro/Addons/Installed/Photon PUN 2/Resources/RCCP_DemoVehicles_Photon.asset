@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36fee6e16583eb74dbbec2d9d0ac617e, type: 3}
+  m_Name: RCCP_DemoVehicles_Photon
+  m_EditorClassIdentifier: 
+  vehicles:
+  - {fileID: 1707117433892235110, guid: a56ca71a8a1e62940a593b1e125ed535, type: 3}
+  - {fileID: 730452379403211696, guid: b6a1e228314b2794aa254beba8f6a116, type: 3}
+  - {fileID: 2939709155551316582, guid: 844463485966e5c43a742e707e8d6d9c, type: 3}
+  - {fileID: 4084824157760521063, guid: 40a9ce0e85181324dab2ebe67878ae5a, type: 3}
+  - {fileID: 3295844700660033619, guid: 07f667e8b72bbd049bdfce927689851a, type: 3}
+  - {fileID: 535788646743631057, guid: 06b1d47c01f82ce4aab5da64176e7e82, type: 3}
+  - {fileID: 6391584915116905626, guid: 2ead3deca11d5524a8bcd482e8d4f156, type: 3}
+  - {fileID: 8615713714832918620, guid: e5b5661092cf37a4f871c858043c33a5, type: 3}
+  - {fileID: 4139270735534037458, guid: cf7fe2ad41daf3a478606af888183994, type: 3}
+  - {fileID: 5496112456730464063, guid: 6fcdfcc32840e314dad431248696de68, type: 3}
+  - {fileID: 5225377005105576334, guid: 7bba1b170905de4488478d42c213990f, type: 3}
+  - {fileID: 3915517831823356582, guid: 376aab384b3288440918302b5d04192f, type: 3}
+  - {fileID: 5174873263424764759, guid: c18c3ee40e31e7e4b9a5e38fcd818e0d, type: 3}
+  - {fileID: 5946376720967469329, guid: cdd2236b20510904c8afff67bec2a85f, type: 3}
+  - {fileID: 5330083007877513637, guid: 10466a889d6d4024c8b4ae004d4cacdc, type: 3}

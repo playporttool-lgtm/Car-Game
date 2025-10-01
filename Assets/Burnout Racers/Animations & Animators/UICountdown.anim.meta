@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9df45c20f95ffdf458ce1b6ccaaf124a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Animations & Animators/UICountdown.anim
+  uploadId: 769589

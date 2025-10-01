@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e9ebe8fa20f0cf64296192a07469b7ec
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_Road/Mat/BR_Barrier2.mat
+  uploadId: 769589

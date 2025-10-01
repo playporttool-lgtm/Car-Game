@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c97e3f625781db64d9a49aa2aadc4d35
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 23800000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Scenes/BR_Scene_2/NavMesh-BR_NavMesh.asset
+  uploadId: 769589

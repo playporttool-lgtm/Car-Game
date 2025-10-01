@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: edfc5608e4637494cb26f896ce1e8d95
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Prefabs/Misc/RCCP_WheelBlur.prefab
+  uploadId: 769589

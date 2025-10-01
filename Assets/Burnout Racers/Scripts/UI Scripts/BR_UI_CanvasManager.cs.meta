@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 90ab7e851d312254880a0d690daf1f51
+timeCreated: 1496709400
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Scripts/UI Scripts/BR_UI_CanvasManager.cs
+  uploadId: 769589

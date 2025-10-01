@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 098065f2ab1b61c4092f0a5c3824945e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Prefabs/UI/Photon/BR_UINetworkPlayerScore.prefab
+  uploadId: 769589

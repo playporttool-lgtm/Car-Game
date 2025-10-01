@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e108f80ae31972342bc6c5a8ec3c646c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_StartFinishBillboard/Mat/BR_Billboard.mat
+  uploadId: 769589

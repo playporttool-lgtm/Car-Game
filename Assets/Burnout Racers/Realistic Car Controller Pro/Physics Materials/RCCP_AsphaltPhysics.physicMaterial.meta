@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6d484cf27c4c65244885d1bbbaedd11b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 13400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Physics Materials/RCCP_AsphaltPhysics.physicMaterial
+  uploadId: 769589

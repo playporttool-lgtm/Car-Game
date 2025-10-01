@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 60a473c93b29c684784c2783e8f19074
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Prefabs/Skidmarks/RCCP_SkidmarksManager.prefab
+  uploadId: 769589

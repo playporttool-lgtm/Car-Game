@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 48121de622c034b409ee00c009304e0b
+timeCreated: 1461545776
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Scripts/BR_Settings.cs
+  uploadId: 769589

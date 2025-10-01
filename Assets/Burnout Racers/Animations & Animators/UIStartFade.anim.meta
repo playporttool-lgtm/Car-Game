@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2dac668a738fb8e4c9f1e780fca04457
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Animations & Animators/UIStartFade.anim
+  uploadId: 769589

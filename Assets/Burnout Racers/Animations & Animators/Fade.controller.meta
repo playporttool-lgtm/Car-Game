@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 06e5f7855185a464183e75f16037c6a4
+timeCreated: 1482331383
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Animations & Animators/Fade.controller
+  uploadId: 769589

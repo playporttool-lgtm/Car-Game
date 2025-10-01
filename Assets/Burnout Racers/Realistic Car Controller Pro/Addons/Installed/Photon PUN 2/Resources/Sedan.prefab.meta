@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 06b1d47c01f82ce4aab5da64176e7e82
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Photon
+    PUN 2/Resources/Sedan.prefab
+  uploadId: 769589

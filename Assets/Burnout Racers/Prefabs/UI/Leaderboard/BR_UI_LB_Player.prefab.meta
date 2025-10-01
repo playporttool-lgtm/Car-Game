@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2bed3b68066ef334ebe225a2dcb551ef
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Prefabs/UI/Leaderboard/BR_UI_LB_Player.prefab
+  uploadId: 769589

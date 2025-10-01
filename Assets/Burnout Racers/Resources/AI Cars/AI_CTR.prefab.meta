@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 73d4c60352600a14fb50af8041c58588
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Resources/AI Cars/AI_CTR.prefab
+  uploadId: 769589

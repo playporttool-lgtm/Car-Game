@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 19100ccd2bfaff84689ac3c5e5f5f7ea
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/License Agreement.txt
+  uploadId: 769589

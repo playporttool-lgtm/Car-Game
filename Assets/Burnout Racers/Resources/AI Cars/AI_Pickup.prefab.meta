@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 63be418182c2df9478185df22a413595
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Resources/AI Cars/AI_Pickup.prefab
+  uploadId: 769589

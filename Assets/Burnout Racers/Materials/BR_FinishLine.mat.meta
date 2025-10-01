@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4ab6bfa8589d952469a2003394c5f6bc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Materials/BR_FinishLine.mat
+  uploadId: 769589

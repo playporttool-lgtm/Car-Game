@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 34f80b65e4e81774bb1efb118b82baf7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Demo
+    Content/Animators & Animations/Demo/Wind Turbine.controller
+  uploadId: 769589

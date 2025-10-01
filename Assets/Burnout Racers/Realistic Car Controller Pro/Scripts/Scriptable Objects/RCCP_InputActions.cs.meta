@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 5d470a9b455785c45879c932dff85c7e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Scripts/Scriptable
+    Objects/RCCP_InputActions.cs
+  uploadId: 769589

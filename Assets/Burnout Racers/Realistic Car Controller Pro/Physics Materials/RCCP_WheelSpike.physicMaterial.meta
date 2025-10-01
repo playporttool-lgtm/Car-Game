@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a853da8b12723de49994402887a52bf1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 13400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Physics Materials/RCCP_WheelSpike.physicMaterial
+  uploadId: 769589

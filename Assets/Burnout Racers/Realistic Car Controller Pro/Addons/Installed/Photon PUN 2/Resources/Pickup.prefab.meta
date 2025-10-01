@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cf7fe2ad41daf3a478606af888183994
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Photon
+    PUN 2/Resources/Pickup.prefab
+  uploadId: 769589

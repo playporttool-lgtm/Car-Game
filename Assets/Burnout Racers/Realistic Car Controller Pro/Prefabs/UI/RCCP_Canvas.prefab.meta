@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 679e140928b0c964c92a4fd6d73669c7
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Prefabs/UI/RCCP_Canvas.prefab
+  uploadId: 769589

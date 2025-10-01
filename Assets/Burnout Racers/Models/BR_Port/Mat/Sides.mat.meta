@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d5f7ab3fb49ea3f4bab34297e124d674
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_Port/Mat/Sides.mat
+  uploadId: 769589

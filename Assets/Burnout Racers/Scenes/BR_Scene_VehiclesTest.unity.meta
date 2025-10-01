@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: eee2cf62381ec2549b8b5b1697d8b11f
+timeCreated: 1447605062
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Scenes/BR_Scene_VehiclesTest.unity
+  uploadId: 769589

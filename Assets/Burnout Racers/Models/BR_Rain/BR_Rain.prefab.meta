@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cba8d493db2bc054380ba28ad92445ef
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_Rain/BR_Rain.prefab
+  uploadId: 769589

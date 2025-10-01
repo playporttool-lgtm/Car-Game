@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c78010a33e50aa04e8758d9269b9c64e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Animations & Animators/CameraIntroAnimation.anim
+  uploadId: 769589

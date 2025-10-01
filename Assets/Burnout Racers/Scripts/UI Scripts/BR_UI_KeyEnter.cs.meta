@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 871faaedfcc884c46b5a8e3215af28bd
+timeCreated: 1551107519
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Scripts/UI Scripts/BR_UI_KeyEnter.cs
+  uploadId: 769589

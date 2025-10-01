@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b3e84846d2979764a8ca9977efd6d479
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Resources/BR_WindowSkin.guiskin
+  uploadId: 769589

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9652d033b38a90044ae3a53d666dd1e7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4300000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Demo
+    Content/Models/Vehicles/E36/RCCP_ColliderMeshes_Body/RCCP_Colliders_Mesh_chunk_0.asset
+  uploadId: 769589

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 47d595493538cbc46878e0aa09aec3f6
+timeCreated: 1481121954
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Scripts/BR_ModHandler.cs
+  uploadId: 769589

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 24259d784e772c14c81448523a004c9b
+timeCreated: 1520463846
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Scripts/BR_QualitySettingsApplier.cs
+  uploadId: 769589

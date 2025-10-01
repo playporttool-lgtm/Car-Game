@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a46649df3e063db4f9164404c25edb0d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Resources/BR_SceneResources.asset
+  uploadId: 769589

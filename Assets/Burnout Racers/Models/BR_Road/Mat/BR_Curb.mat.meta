@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 07c99204f2fa409478d11e1272b2ab8d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_Road/Mat/BR_Curb.mat
+  uploadId: 769589

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c567378382222c64e8540628e1942efd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Demo
+    Content/Models/Vehicles/Coupe_Muscle/Mat/Coupe_BrakeLights.mat
+  uploadId: 769589

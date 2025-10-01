@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e1fbfa694b650c1479416c8381ce9e60
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 13400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Physics Materials/RCCP_ZeroFriction.physicMaterial
+  uploadId: 769589

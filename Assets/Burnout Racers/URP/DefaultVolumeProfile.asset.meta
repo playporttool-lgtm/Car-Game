@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 11982fb6a91616e479935647821dc889
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/URP/DefaultVolumeProfile.asset
+  uploadId: 769589

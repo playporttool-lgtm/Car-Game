@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2fd0de3a603584f458df36d6d7fb5991
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Prefabs/UI/Photon/BR_UI_PhotonRoom.prefab
+  uploadId: 769589

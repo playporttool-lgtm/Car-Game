@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c6b1d2e25a0ee2b4786b2f4680bf8b43
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_Road/Mat/BR_RaceTrackRoad_3.mat
+  uploadId: 769589

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bd0e846db042ba24a87697c0019aefb6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Scenes/BR_Scene_2/BR_Scene_2 Lighting Settings.lighting
+  uploadId: 769589

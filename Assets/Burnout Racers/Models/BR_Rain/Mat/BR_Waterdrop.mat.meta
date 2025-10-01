@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: eb9851cfdf2121e46892f2203b99fc5b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_Rain/Mat/BR_Waterdrop.mat
+  uploadId: 769589

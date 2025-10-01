@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dfe5dec8cfa6e4344a45eac2df884a26
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Textures/BR_MainMenuGarageRenderTexture.renderTexture
+  uploadId: 769589

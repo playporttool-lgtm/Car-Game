@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9174630cbc7739841970d10442a86033
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Photon
+    PUN 2/Resources/RCCP_DemoScenes_Photon.asset
+  uploadId: 769589

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d2d468bb9d58bd044a4ad722d5ad7eda
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Demo
+    Content/Models/Vehicles/Jeep_4WD/Mat/Jeep_HeadLights.mat
+  uploadId: 769589

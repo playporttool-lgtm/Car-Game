@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 42c5fad5df822404389976612725fe64
+timeCreated: 1482265162
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Animations & Animators/SinusScale.anim
+  uploadId: 769589

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 570b1cb7bd1e269479839a2209d91a52
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Resources/RCCP_GroundMaterials.asset
+  uploadId: 769589

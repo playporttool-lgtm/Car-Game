@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: dc765f22d6bfd6945bacb7c387af7ec5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 23800000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Demo
+    Content/Scenes/RCCP_Scene_CityNew/NavMesh.asset
+  uploadId: 769589

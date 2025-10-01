@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 216e5ed3d54248c44bea6b7c4bdbeb7c
+timeCreated: 1464820642
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Photon
+    PUN 2/Editor/RCCP_PhotonInitLoad.cs
+  uploadId: 769589

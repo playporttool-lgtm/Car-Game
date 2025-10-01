@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4fe6770cc3833914fb2572aa32cd62d6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Materials/RCCP_Marker.mat
+  uploadId: 769589

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 19f260b32efeae9448a0f801f53db857
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Prefabs/Cameras/RCCP_FixedCamera.prefab
+  uploadId: 769589

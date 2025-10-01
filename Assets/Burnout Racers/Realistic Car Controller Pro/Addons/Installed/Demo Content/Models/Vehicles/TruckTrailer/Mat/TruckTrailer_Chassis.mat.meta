@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3715e67e0f9cb3747a1ec77652d8b5ac
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Demo
+    Content/Models/Vehicles/TruckTrailer/Mat/TruckTrailer_Chassis.mat
+  uploadId: 769589

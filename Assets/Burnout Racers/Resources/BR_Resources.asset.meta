@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1827636600166e24499f1446ab54fa96
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Resources/BR_Resources.asset
+  uploadId: 769589

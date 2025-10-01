@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: db15301322a761c4a99f784c31dcbd16
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_Port/Mat/GarageDoor.mat
+  uploadId: 769589

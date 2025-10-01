@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a5df9891b5274144394336a72558e1ba
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Materials/BR_Lensflare.asset
+  uploadId: 769589

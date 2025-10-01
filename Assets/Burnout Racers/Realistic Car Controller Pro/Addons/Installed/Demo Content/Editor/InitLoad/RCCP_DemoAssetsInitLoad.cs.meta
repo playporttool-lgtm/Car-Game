@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: a7e9b4385243a1546a536bf2e0c63338
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Demo
+    Content/Editor/InitLoad/RCCP_DemoAssetsInitLoad.cs
+  uploadId: 769589

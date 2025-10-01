@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fa51215a93b10f245916c6512dd62456
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Animations & Animators/Start Fade.controller
+  uploadId: 769589

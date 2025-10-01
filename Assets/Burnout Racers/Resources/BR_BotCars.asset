@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e82d2b3a54f1843946f1cd0d239ab5, type: 3}
+  m_Name: BR_BotCars
+  m_EditorClassIdentifier: 
+  AICars:
+  - car: {fileID: 851175869973784480, guid: f06e74ffa9108ed43a5b750c54cd715f, type: 3}
+  - car: {fileID: 1974855578314965234, guid: 73d4c60352600a14fb50af8041c58588, type: 3}
+  - car: {fileID: 2156764968815668731, guid: 8e75a2c579caa024abafbc0ee7248c18, type: 3}
+  - car: {fileID: 8384470203066771675, guid: d56edd478235a294090587a8992bfd18, type: 3}
+  - car: {fileID: 8409989382334595350, guid: 037d0d35c5ffbb14facb448e384d716b, type: 3}
+  - car: {fileID: 998480105194562365, guid: 9610633d0842ade43b6c89b64ef54b12, type: 3}
+  - car: {fileID: 6906964874771489805, guid: 63be418182c2df9478185df22a413595, type: 3}
+  - car: {fileID: 314591312094285775, guid: a1841f1c06217d4469743653243d3e19, type: 3}
+  - car: {fileID: 6447005617158300754, guid: c3b592c329bfbd1469a33a967c7cb989, type: 3}
+  botNicknames:
+  - AI_Thunderbolt
+  - AI_NitroRacer
+  - AI_ShadowRunner
+  - AI_QuantumSpeed
+  - AI_SonicBoom
+  - AI_HyperDrive
+  - AI_TurboWave
+  - AI_SpeedVortex
+  - AI_BlazeFury
+  - AI_TurboCharger
+  - AI_ApexPredator
+  - AI_TurboTitan
+  - AI_NovaBurst
+  - AI_VortexRider

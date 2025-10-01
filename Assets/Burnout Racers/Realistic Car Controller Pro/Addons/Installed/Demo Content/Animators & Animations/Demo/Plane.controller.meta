@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 27abe111f1a354e4a9af84b50f80e08c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Demo
+    Content/Animators & Animations/Demo/Plane.controller
+  uploadId: 769589

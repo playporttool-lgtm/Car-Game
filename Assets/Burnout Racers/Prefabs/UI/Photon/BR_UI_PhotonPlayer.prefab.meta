@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3ba9d4c17fa5d884db57b6c0c5afc617
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Prefabs/UI/Photon/BR_UI_PhotonPlayer.prefab
+  uploadId: 769589

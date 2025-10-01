@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 40df93216dc8c2740a7aa5de3c5c63a4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Scripts/UI Scripts/BR_UI_Fade.cs
+  uploadId: 769589

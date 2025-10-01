@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b447012428c708b43bbc80425066bc94
+timeCreated: 1520828402
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Animations & Animators/UIRightSide.anim
+  uploadId: 769589

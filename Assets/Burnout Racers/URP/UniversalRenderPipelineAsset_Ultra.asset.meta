@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c00e99719d94e084e954a6c58d42d60d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/URP/UniversalRenderPipelineAsset_Ultra.asset
+  uploadId: 769589

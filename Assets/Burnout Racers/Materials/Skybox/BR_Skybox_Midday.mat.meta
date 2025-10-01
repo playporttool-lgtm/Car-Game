@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7b03db6b5e4a19f4088213fac4381608
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Materials/Skybox/BR_Skybox_Midday.mat
+  uploadId: 769589

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 28675ed45b03cb24aa8cd849e744db79
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Materials/BR_Asphalt.mat
+  uploadId: 769589

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 06c47d762db7c8d47a9dc321a8d1f19a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Editor/RCCP_FlareSettingsApplier.cs
+  uploadId: 769589

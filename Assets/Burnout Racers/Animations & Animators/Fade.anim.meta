@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 63609c0a9130d84488b6a7ca67ac7e8b
+timeCreated: 1482331383
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Animations & Animators/Fade.anim
+  uploadId: 769589

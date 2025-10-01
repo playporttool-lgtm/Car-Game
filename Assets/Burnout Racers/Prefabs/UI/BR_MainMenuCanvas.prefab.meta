@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 55c5035fad2793d46bde99dcc16ec760
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Prefabs/UI/BR_MainMenuCanvas.prefab
+  uploadId: 769589

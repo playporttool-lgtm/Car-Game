@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49df1604b104eb4c9ce93ef613030b4, type: 3}
+  m_Name: RCCP_DemoScenes_Photon
+  m_EditorClassIdentifier: 
+  instanceId: 0
+  demo_PUN2City: {fileID: 102900000, guid: 7b3be117ff1575247926156ae57ff285, type: 3}
+  demo_PUN2Lobby: {fileID: 102900000, guid: 20625259c5c19014b98498bfe24afbb5, type: 3}
+  path_demo_PUN2City: Assets/Realistic Car Controller Pro/Addons/Installed/Photon
+    PUN 2/Scenes/RCCP_Scene_Blank_Photon.unity
+  path_demo_PUN2Lobby: Assets/Realistic Car Controller Pro/Addons/Installed/Photon
+    PUN 2/Scenes/RCCP_Scene_PhotonLobby.unity

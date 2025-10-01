@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0de88dafa46a739489dcdf676cf2c766
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Scripts/Shaders/URP/RCCP_Shader_Decal_URP.shadergraph
+  uploadId: 769589

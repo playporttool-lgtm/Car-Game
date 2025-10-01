@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f3f3d5102230f8a45bb5170b7461089c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Materials/Skybox/BR_Skybox_MainMenu.mat
+  uploadId: 769589

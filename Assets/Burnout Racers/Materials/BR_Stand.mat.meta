@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5981f13eddbae96419086b9c7353d9fe
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Materials/BR_Stand.mat
+  uploadId: 769589

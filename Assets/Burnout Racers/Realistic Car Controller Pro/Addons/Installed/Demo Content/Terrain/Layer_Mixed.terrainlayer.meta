@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a5b92a3a03ce71247bc3778c099880cd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Realistic Car Controller Pro/Addons/Installed/Demo
+    Content/Terrain/Layer_Mixed.terrainlayer
+  uploadId: 769589

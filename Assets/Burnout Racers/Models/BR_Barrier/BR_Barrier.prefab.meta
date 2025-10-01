@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 115c66c87242b33468b7980f035eca4a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Models/BR_Barrier/BR_Barrier.prefab
+  uploadId: 769589

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 424f89154880c4644bdf9e47a9627e28
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Animations & Animators/BD_UIInformer.controller
+  uploadId: 769589

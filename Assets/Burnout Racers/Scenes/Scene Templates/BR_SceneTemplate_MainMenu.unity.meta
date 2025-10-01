@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2e2a96742fc2b4348a437e682c0635c6
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Scenes/Scene Templates/BR_SceneTemplate_MainMenu.unity
+  uploadId: 769589

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9a468d3ae1f28a8488aa82bdffa00676
+timeCreated: 1455150854
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Resources/BR_PlayerCars.asset
+  uploadId: 769589

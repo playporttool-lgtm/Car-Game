@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5588e0f8f014e3341a29ab72cd064453
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287812
+  packageName: Burnout Racers Multiplayer
+  packageVersion: 1.89
+  assetPath: Assets/Burnout Racers/Materials/BR_StartLine.mat
+  uploadId: 769589
