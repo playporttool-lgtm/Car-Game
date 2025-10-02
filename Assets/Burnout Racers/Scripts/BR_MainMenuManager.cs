@@ -92,6 +92,7 @@ public class BR_MainMenuManager : MonoBehaviour {
     public GameObject selectionModeMenu;
     public GameObject selectionSceneOfflineMenu;
     public GameObject purchaseConfirmationMenu;
+    public TextMeshProUGUI coinText;
 
     /// <summary>
     /// Displaying currency.
@@ -241,19 +242,20 @@ public class BR_MainMenuManager : MonoBehaviour {
 
         //api settings
         ShowLoadingScreen();
-
+        GetUserProfile();
         //  Getting the player name.
         string nickName = BR_API.GetPlayerName();
 
         //  If it's not empty, open the main menu. Otherwise open the welcome menu.
         if (BR_API.IsFirstGameplay()) {
 
-            OpenMenu(welcomeMenu);
-            nickName = "Player " + UnityEngine.Random.Range(0, 9999).ToString("F0");
+            //OpenMenu(welcomeMenu);
+            //nickName = "Player " + UnityEngine.Random.Range(0, 9999).ToString("F0");
 
         } else {
-
-            OpenMenu(mainMenu);
+            //Main Menu
+            SelectMode(true);
+            OpenMenu(onlineMenu);
 
         }
 
@@ -307,6 +309,25 @@ public class BR_MainMenuManager : MonoBehaviour {
     {
         if (string.IsNullOrEmpty(fullName)) return "";
         return fullName.Length > maxLength ? fullName.Substring(0, maxLength) + ".." : fullName;
+    }
+
+    private string FormatCurrency(int amount)
+    {
+        if (amount >= 1000000)
+        {
+            // For millions: 1.5M, 2M, etc.
+            return (amount / 1000000f).ToString("0.#") + "M";
+        }
+        else if (amount >= 1000)
+        {
+            // For thousands: 1k, 1.2k, 15k, etc.
+            return (amount / 1000f).ToString("0.#") + "k";
+        }
+        else
+        {
+            // Below 1000: show as-is
+            return amount.ToString();
+        }
     }
 
     // API Response structure
@@ -668,7 +689,7 @@ public class BR_MainMenuManager : MonoBehaviour {
 
         // Example: Display username in UI
         // usernameText.text = userData.username;
-        // coinsText.text = userData.total_coins.ToString();
+        //coinsText.text = userData.total_coins.ToString();
 
         UMdata = userData;
         Debug.Log("Profile fetched and stored.");
@@ -681,7 +702,7 @@ public class BR_MainMenuManager : MonoBehaviour {
 
         //PlayerPrefs.SetInt("coin", tempCoin);
 
-        //PlayerPrefs.Save();
+        PlayerPrefs.Save();
         PhotonNetwork.NickName = UMdata.username;
 
 
@@ -824,7 +845,7 @@ public class BR_MainMenuManager : MonoBehaviour {
         racePointsText.text = (racePoints > 0 ? "+" : "") + racePoints.ToString();
 
         //  Displaying player name text.
-        playerNameText.text = BR_API.GetPlayerName();
+        //playerNameText.text = BR_API.GetPlayerName();
 
         //  Displaying stats of the current vehicle. Engine, handling, brake, and maximum speed.
         if (currentPlayerCar) {
