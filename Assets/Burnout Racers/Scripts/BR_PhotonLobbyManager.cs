@@ -286,10 +286,11 @@ public class BR_PhotonLobbyManager : MonoBehaviourPunCallbacks {
                 break;
 
         }
+       
 
         //  Region.
         string region = PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion;
-
+        region = "asia";
         //  Setting region text.
         if (region != "") {
 
@@ -314,10 +315,14 @@ public class BR_PhotonLobbyManager : MonoBehaviourPunCallbacks {
             regionDropdown.SetValueWithoutNotify(3);
 
         }
+          LoginButton();
+        OpenMenu(selectionPanel);
 
 #endif
 
     }
+
+
 
     /// <summary>
     /// Connecting to the master server.
@@ -329,7 +334,7 @@ public class BR_PhotonLobbyManager : MonoBehaviourPunCallbacks {
         // If not connected, connect. Otherwise open selection panel directly.
         if (!PhotonNetwork.IsConnectedAndReady) {
 
-            OpenMenu(loginPanel);
+            OpenMenu(selectionPanel);
 
         } else {
 
@@ -469,13 +474,19 @@ public override void OnJoinRandomFailed(short returnCode, string message) {
     if (BR_API.GetGameType() == 0 && BR_API.GetLapsAmount() == 2) {
         
         // Create a 2-player room since no available room was found
+
+        string location = "";
+        if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("SearchLocation")) {
+            location = (string)PhotonNetwork.LocalPlayer.CustomProperties["SearchLocation"];
+        }
         
-        // Custom properties for lobby visibility
-        string[] customPropertiesForLobby = new string[4];
+        // Custom properties for lobby visibility - CHANGED FROM 4 TO 5
+        string[] customPropertiesForLobby = new string[5];
         customPropertiesForLobby[0] = "scene";
         customPropertiesForLobby[1] = "gametype";
         customPropertiesForLobby[2] = "laps";
         customPropertiesForLobby[3] = "password";
+        customPropertiesForLobby[4] = "location"; // ADD THIS LINE - expose location to lobby
 
         // Custom properties for room
         Hashtable customPropertiesForRoom = new Hashtable();
@@ -483,6 +494,7 @@ public override void OnJoinRandomFailed(short returnCode, string message) {
         customPropertiesForRoom.Add("gametype", "Race");
         customPropertiesForRoom.Add("laps", 2);
         customPropertiesForRoom.Add("password", "");
+        customPropertiesForRoom.Add("location", location); // Add location to room
 
         // Room options
         RoomOptions roomOptions = new RoomOptions { MaxPlayers = 2 };
@@ -492,8 +504,8 @@ public override void OnJoinRandomFailed(short returnCode, string message) {
         roomOptions.CustomRoomPropertiesForLobby = customPropertiesForLobby;
         roomOptions.CustomRoomProperties = customPropertiesForRoom;
 
-        // Create room with random name
-        string roomName = "2P_" + UnityEngine.Random.Range(1000, 9999).ToString();
+        // Create room with location-based name
+        string roomName = location + "_2P_" + UnityEngine.Random.Range(1000, 9999).ToString();
         PhotonNetwork.CreateRoom(roomName, roomOptions, TypedLobby.Default);
         
     } else {
@@ -641,7 +653,7 @@ public override void OnJoinRandomFailed(short returnCode, string message) {
             BR_UI_Informer.Instance.Info("DISCONNECTED! REASON: " + cause.ToString());
 
         //  Opening the login panel.
-        OpenMenu(loginPanel);
+        OpenMenu(selectionPanel);
 
     }
 
@@ -770,6 +782,46 @@ private void CheckButtonsInRoom() {
 
     }
 
+/// <summary>
+/// Two player quick matchmaking with location filter.
+/// </summary>
+/// <param name="location">Location name (Galle, Colombo, Jaffna, Kandy, Sigiri)</param>
+public void TwoPlayerQuickMatchByLocation(string location)
+{
+#if PHOTON_UNITY_NETWORKING
+
+    // Join the lobby if we're not in
+    if (!PhotonNetwork.InLobby)
+        PhotonNetwork.JoinLobby();
+
+    // Set game type to Race
+    BR_API.SetGameType(0);
+
+    // Set laps to 2
+    BR_API.SetLapsAmount(2);
+
+    // Set scene (use 1 for testing, adjust as needed)
+    BR_API.SetScene(1);
+
+    // Store location in player properties for room creation if join fails
+    Hashtable playerProps = PhotonNetwork.LocalPlayer.CustomProperties;
+    playerProps["SearchLocation"] = location;
+    PhotonNetwork.LocalPlayer.SetCustomProperties(playerProps);
+
+    // Opening the joining random room panel
+    OpenMenu(joinRandomRoomPanel);
+
+    // Setting room properties to search for - INCLUDING LOCATION
+    Hashtable expectedRoomProperties = new Hashtable();
+    expectedRoomProperties.Add("gametype", "Race");
+    expectedRoomProperties.Add("laps", 2);
+    expectedRoomProperties.Add("location", location); // Filter by location
+
+    // Try to join a random room with these criteria
+    PhotonNetwork.JoinRandomRoom(expectedRoomProperties, 2);
+
+#endif
+}
 
 /// <summary>
 /// Two player quick matchmaking. Always tries to join first, creates only if no room available.
