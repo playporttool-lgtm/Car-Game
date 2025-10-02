@@ -12,6 +12,9 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.Networking;
+
+
 #if PHOTON_UNITY_NETWORKING
 using Photon.Pun;
 #endif
@@ -202,6 +205,13 @@ public class BR_MainMenuManager : MonoBehaviour {
     /// </summary>
     private BR_UI_StoreItemButton lastSelectedStoreItem;
 
+
+    //API variables
+    public UserData UMdata;
+    public UserData userDatas;
+    private string apiUrl = "https://api.playport.lk/api/v1/users/profile";
+    public TextMeshProUGUI avatarUsernameText;
+
     private void Awake() {
 
         //  Setting the latest saved quality level.
@@ -228,6 +238,9 @@ public class BR_MainMenuManager : MonoBehaviour {
     }
 
     private void Start() {
+
+        //api settings
+        ShowLoadingScreen();
 
         //  Getting the player name.
         string nickName = BR_API.GetPlayerName();
@@ -284,6 +297,480 @@ public class BR_MainMenuManager : MonoBehaviour {
         //  Listening event when money changed.
         BR_API.OnPlayerMoneyChanged += OnPlayerMoneyChanged;
 
+    }
+
+
+
+    //API features
+
+    private string LimitNameText(string fullName, int maxLength = 8)
+    {
+        if (string.IsNullOrEmpty(fullName)) return "";
+        return fullName.Length > maxLength ? fullName.Substring(0, maxLength) + ".." : fullName;
+    }
+
+    // API Response structure
+    [System.Serializable]
+    public class ApiResponse
+    {
+        public bool success;
+        public string message;
+        public UserData data;
+    }
+
+    // User data structure matching the API response
+    [System.Serializable]
+    public class UserData
+    {
+        public string id;
+        public string username;
+        public string phone_number;
+        public string email;
+        public string password_hash;
+        public int total_coins;
+        public string profile_image_url;
+        public bool is_active;
+        public bool is_verified;
+        public string status;
+        public string suspension_reason;
+        public string suspended_until;
+        public string kyc_status;
+        public string kyc_documents;
+        public int risk_score;
+        public string created_at;
+        public string updated_at;
+        public string last_login_at;
+        public string suspended_by;
+        public string game_id;
+    }
+
+
+    public void ShowLoadingScreen()
+    {
+        //coinErrorPanel.SetActive(false);
+        //LoadingScreen.SetActive(true);
+        //loadingBar.value = 0;
+
+        // Start the loading process
+        StartCoroutine(LoadingProcess());
+    }
+
+
+    private IEnumerator LoadingProcess()
+    {
+        bool photonReady = false;
+        bool userDataReady = false;
+        float loadingProgress = 0f;
+        float maxLoadingTime = 25f; // Maximum loading time
+        float timer = 0f;
+
+        // Start both processes concurrently
+        StartCoroutine(WaitForPhotonConnection(() => photonReady = true));
+        StartCoroutine(WaitForUserData(() => userDataReady = true));
+
+        // Update loading bar while waiting
+        while (!photonReady || !userDataReady)
+        {
+            timer += Time.deltaTime;
+
+            // Check for timeout
+            if (timer >= maxLoadingTime)
+            {
+                Debug.Log("Loading timeout - Connection failed");
+                string msg = "No Connection! Please check your internet and try again.";
+                //CheckConnection(msg);
+                //LoadingScreen.SetActive(false);
+                yield break;
+            }
+
+            // Calculate progress based on completion status
+            float targetProgress = 0f;
+            if (photonReady) targetProgress += 0.5f;
+            if (userDataReady) targetProgress += 0.5f;
+
+            // Smooth progress bar animation
+            loadingProgress = Mathf.Lerp(loadingProgress, targetProgress, Time.deltaTime * 2f);
+            //loadingBar.value = loadingProgress;
+
+            yield return null;
+        }
+
+        // Final animation to complete
+        while (loadingBar.value < 0.99f)
+        {
+            //loadingBar.value = Mathf.Lerp(loadingBar.value, 1f, Time.deltaTime * 5f);
+            yield return null;
+        }
+
+        // Small delay before hiding loading screen
+        yield return new WaitForSeconds(0.5f);
+        //LoadingScreen.SetActive(false);
+    }
+
+    private IEnumerator WaitForPhotonConnection(System.Action onComplete)
+    {
+        // Wait until Photon is connected to Master Server and joined lobby
+        while (!PhotonNetwork.IsConnectedAndReady ||
+            !PhotonNetwork.InLobby ||
+            PhotonNetwork.Server != Photon.Realtime.ServerConnection.MasterServer)
+        {
+
+            // Additional check to ensure we're in the right state for matchmaking
+            if (PhotonNetwork.IsConnected &&
+                PhotonNetwork.Server != Photon.Realtime.ServerConnection.MasterServer)
+            {
+                //Debug.Log("Waiting for Master Server connection...");
+            }
+            else if (PhotonNetwork.IsConnectedAndReady && !PhotonNetwork.InLobby)
+            {
+                //Debug.Log("Waiting for lobby join...");
+
+            }
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        Debug.Log("Photon ready for matchmaking - Connected to Master Server and in Lobby");
+        onComplete?.Invoke();
+    }
+
+    private IEnumerator WaitForUserData(System.Action onComplete)
+    {
+        // Start fetching user profile
+        yield return StartCoroutine(GetUserProfileCoroutine());
+
+        // Ensure UMdata is set (fallback to default if API fails)
+        if (UMdata == null || string.IsNullOrEmpty(UMdata.username))
+        {
+            UMdata = userDatas; // Use your fallback data
+            if (string.IsNullOrEmpty(UMdata.username))
+            {
+                UMdata.username = "Guest"; // Final fallback
+            }
+        }
+
+        onComplete?.Invoke();
+    }
+
+    public void GetUserProfile()
+    {
+        Debug.Log("Fetching user profile...");
+
+        StartCoroutine(GetUserProfileCoroutine());
+
+    }
+
+    public string GAME_ID
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(_gameId))
+            {
+                _gameId = PlayerPrefs.GetString("GAME_ID", "");
+            }
+            return _gameId;
+        }
+        set
+        {
+            _gameId = value;
+            if (!string.IsNullOrEmpty(value))
+            {
+                PlayerPrefs.SetString("GAME_ID", value);
+                PlayerPrefs.Save();
+                Debug.Log("GAME_ID saved to PlayerPrefs: " + value);
+            }
+        }
+    }
+    private string _gameId = "";
+
+    [System.Serializable]
+    public class UpdateGameStatsRequest
+    {
+        public string game_id;
+        public int wins;
+        public int losses;
+    }
+
+    [System.Serializable]
+    public class GameStatsResponse
+    {
+        public bool success;
+        public string message;
+        // Add more fields here if the API returns additional data
+    }
+
+    // ============================================
+    // Add these methods to your MenuController script
+    // ============================================
+
+    // Game ID - replace with your actual game ID
+
+
+    // Call this when player wins
+    public void UpdateWins()
+    {
+        StartCoroutine(UpdateGameStatsCoroutine(wins: 1, losses: 0));
+    }
+
+    // Call this when player loses
+    public void UpdateLosses()
+    {
+        StartCoroutine(UpdateGameStatsCoroutine(wins: 0, losses: 1));
+    }
+
+    // Main coroutine for updating game stats
+    public IEnumerator UpdateGameStatsCoroutine(int wins, int losses)
+    {
+        // Validate GAME_ID
+        if (string.IsNullOrEmpty(GAME_ID))
+        {
+            Debug.LogError("[UpdateGameStats] GAME_ID is empty! Cannot update stats.");
+            Debug.LogError("Make sure the URL contains the gameId parameter with & separator");
+            yield break;
+        }
+
+        Debug.Log($"[UpdateGameStats] Sending update with GAME_ID: {GAME_ID}");
+
+        string json;
+        if (wins > 0)
+        {
+            json = $"{{\"game_id\":\"{GAME_ID}\",\"wins\":{wins}}}";
+        }
+        else
+        {
+            json = $"{{\"game_id\":\"{GAME_ID}\",\"losses\":{losses}}}";
+        }
+
+        Debug.Log($"[UpdateGameStats] JSON payload: {json}");
+
+        string token = GetTokenFromURL();
+
+        using (var request = new UnityWebRequest("https://api.playport.lk/api/v1/games-stats", "POST"))
+        {
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Authorization", "Bearer " + token);
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError ||
+                request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError($"[UpdateGameStats:POST] Error: {request.error} (HTTP {request.responseCode})");
+                Debug.LogError($"[UpdateGameStats:POST] Body: {request.downloadHandler.text}");
+                yield break;
+            }
+
+            string jsonResponse = request.downloadHandler.text;
+            Debug.Log("[UpdateGameStats:POST] Raw Response: " + jsonResponse);
+
+            GameStatsResponse response = JsonUtility.FromJson<GameStatsResponse>(jsonResponse);
+            if (response != null && response.success)
+            {
+                Debug.Log($"[UpdateGameStats:POST] Success! {(wins > 0 ? "Win" : "Loss")} recorded. Message: {response.message}");
+            }
+            else
+            {
+                Debug.LogWarning("[UpdateGameStats:POST] API reported success=false");
+            }
+        }
+    }
+
+    public IEnumerator GetUserProfileCoroutine()
+    {
+
+
+        string tokent = GetTokenFromURL();
+        //Debug.Log("GetTokenFromURL: " + tokent);
+        using (UnityWebRequest request = UnityWebRequest.Get(apiUrl))
+        {
+            // Add Bearer token authorization
+            request.SetRequestHeader("Authorization", "Bearer " + tokent);
+            Debug.Log("Req:" + request);
+            // Send the request
+            yield return request.SendWebRequest();
+
+            // Check for errors
+            if (request.result == UnityWebRequest.Result.ConnectionError ||
+                request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                /*Debug.Log("Error: " + request.error);
+                Debug.Log("Response Code: " + request.responseCode);
+                UMdata = userDatas;
+                avatarUsernameText.text = "ranil";*/
+
+                // Success - parse the response
+                string jsonResponse = request.downloadHandler.text;
+                Debug.Log("Raw Response: " + jsonResponse);
+
+                // Parse the API response
+                ApiResponse response = JsonUtility.FromJson<ApiResponse>(jsonResponse);
+
+                Debug.Log("response" + response);
+
+                if (response != null && response.success)
+                {
+                    Debug.Log("Success! Message: " + response.message);
+                    Debug.Log("Username: " + response.data.username);
+                    Debug.Log("Phone: " + response.data.phone_number);
+                    Debug.Log("Total Coins: " + response.data.total_coins);
+                    Debug.Log("Account Status: " + response.data.status);
+                    Debug.Log("KYC Status: " + response.data.kyc_status);
+
+                    // Use the data as needed
+                    OnProfileFetched(response.data);
+                }
+                else
+                {
+                    Debug.Log("API returned=false");
+                    UMdata = userDatas;
+                    avatarUsernameText.text = LimitNameText("SupunTesting");
+                }
+
+            }
+            else
+            {
+                // Success - parse the response
+                string jsonResponse = request.downloadHandler.text;
+                Debug.Log("Raw Response: " + jsonResponse);
+
+                // Parse the API response
+                ApiResponse response = JsonUtility.FromJson<ApiResponse>(jsonResponse);
+
+                if (response.success)
+                {
+                    Debug.Log("Success! Message: " + response.message);
+                    Debug.Log("Username: " + response.data.username);
+                    Debug.Log("Phone: " + response.data.phone_number);
+                    Debug.Log("Total Coins: " + response.data.total_coins);
+                    Debug.Log("Account Status: " + response.data.status);
+                    Debug.Log("KYC Status: " + response.data.kyc_status);
+
+                    // Use the data as needed
+                    OnProfileFetched(response.data);
+                }
+                else
+                {
+                    Debug.Log("API returned=false");
+                    UMdata = userDatas;
+                    avatarUsernameText.text = "Mahinda";
+                }
+            }
+        }
+    }
+
+    private void OnProfileFetched(UserData userData)
+    {
+        // Handle the fetched user data here
+        // Update UI, save to PlayerPrefs, etc.
+
+        // Example: Display username in UI
+        // usernameText.text = userData.username;
+        // coinsText.text = userData.total_coins.ToString();
+
+        UMdata = userData;
+        Debug.Log("Profile fetched and stored.");
+        avatarUsernameText.text = LimitNameText(UMdata.username);
+        PlayerPrefs.SetString("username", avatarUsernameText.text);
+
+
+        //tempCoin = UMdata.total_coins;
+
+
+        //PlayerPrefs.SetInt("coin", tempCoin);
+
+        //PlayerPrefs.Save();
+        PhotonNetwork.NickName = UMdata.username;
+
+
+
+        //UpdateCurrencyText();
+
+    }
+
+    public string GetTokenFromURL()
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+    string url = Application.absoluteURL;
+    Debug.Log("Full URL: " + url);
+    
+    if (!string.IsNullOrEmpty(url))
+    {
+        try
+        {
+            int queryStart = url.IndexOf('?');
+            if (queryStart >= 0)
+            {
+                string queryString = url.Substring(queryStart + 1);
+                Debug.Log("Query string: " + queryString);
+                
+                string[] parameters = queryString.Split('&');
+                string token = null;
+                
+                foreach (string param in parameters)
+                {
+                    Debug.Log("Processing parameter: " + param);
+                    
+                    int equalIndex = param.IndexOf('=');
+                    if (equalIndex > 0)
+                    {
+                        string key = param.Substring(0, equalIndex);
+                        string value = param.Substring(equalIndex + 1);
+                        
+                        if (key == "token")
+                        {
+                            token = UnityEngine.Networking.UnityWebRequest.UnEscapeURL(value);
+                            Debug.Log("Token found: " + token.Substring(0, Mathf.Min(20, token.Length)) + "...");
+                        }
+                        else if (key == "gameid" || key == "gameId" || key == "game_id")
+                        {
+                            GAME_ID = UnityEngine.Networking.UnityWebRequest.UnEscapeURL(value);
+                            Debug.Log("Game ID from URL: " + GAME_ID);
+                        }
+                    }
+                }
+                
+                if (token != null)
+                {
+                    return token;
+                }
+                
+                Debug.LogWarning("Token parameter not found in URL");
+            }
+            else
+            {
+                Debug.LogWarning("No query string found in URL");
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Error parsing URL: " + e.Message);
+        }
+    }
+    else
+    {
+        Debug.LogWarning("Application.absoluteURL is null or empty");
+    }
+#else
+        Debug.Log("Not running in WebGL build - using test values");
+        //GAME_ID = "d7d9c65e-a763-422c-8865-181f307e1ecf";
+        //Debug.Log("Editor mode - GAME_ID set to: " + GAME_ID);
+        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhYjkxMWJiYS05ZTIzLTRhYTYtYTMyYi0wMmE5YzFjODU3NjQiLCJyb2xlIjoidXNlciIsImlhdCI6MTc1ODI4MDYxNCwiZXhwIjoxNzU4Mjg0MjE0fQ.yJBZMa_v5246bg2cJ6ElFH4r-GBvt2zuLMYQgILb7";
+#endif
+        Debug.LogError("Failed to extract token from URL");
+        return null;
+    }
+
+    // Optional: Method to retrieve stored token
+    public string GetStoredToken()
+    {
+        if (PlayerPrefs.HasKey("auth_token"))
+        {
+            return PlayerPrefs.GetString("auth_token");
+        }
+        return null;
     }
 
     /// <summary>
