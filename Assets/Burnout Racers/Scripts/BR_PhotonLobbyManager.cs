@@ -791,6 +791,25 @@ public void TwoPlayerQuickMatchByLocation(string location)
 #if PHOTON_UNITY_NETWORKING
 
     // Join the lobby if we're not in
+
+if(location == "Galle"){
+    BR_MainMenuManager.Instance.SelectCar(4);
+}
+else if(location == "Kandy"){
+    BR_MainMenuManager.Instance.SelectCar(5);
+}
+else if(location == "Colombo"){
+    BR_MainMenuManager.Instance.SelectCar(6);
+}
+else if(location == "Jaffna"){
+    BR_MainMenuManager.Instance.SelectCar(7);
+}
+
+else if(location == "Sigiri"){
+    BR_MainMenuManager.Instance.SelectCar(8);
+}
+
+
     if (!PhotonNetwork.InLobby)
         PhotonNetwork.JoinLobby();
 

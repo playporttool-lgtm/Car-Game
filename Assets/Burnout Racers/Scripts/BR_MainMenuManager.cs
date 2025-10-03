@@ -717,7 +717,14 @@ public class BR_MainMenuManager : MonoBehaviour {
         }
 
         public void BuyNewCoins(){
-            StartCoroutine(UpdateUserProfileCoroutine_PUT(450));
+                int currentCoins = UMdata != null ? UMdata.total_coins : PlayerPrefs.GetInt("coin", 0);
+    
+    // Add the amount you want to give (e.g., 100 coins)
+    int newTotal = currentCoins + 100;
+    
+    Debug.Log($"Current coins: {currentCoins}, Adding 100, New total: {newTotal}");
+    
+    StartCoroutine(UpdateUserProfileCoroutine_PUT(newTotal));
         }
 
     public IEnumerator GetUserProfileCoroutine()
@@ -1262,10 +1269,10 @@ public class BR_MainMenuManager : MonoBehaviour {
     /// <summary>
     /// Selects the player vehicle.
     /// </summary>
-    public void SelectCar() {
+    public void SelectCar( int index) {
 
-        BR_API.SetVehicle(currentPlayerCarIndex);
-        
+        //BR_API.SetVehicle(currentPlayerCarIndex);
+        BR_API.SetVehicle(index);
         SpawnPlayer();
 
     }
