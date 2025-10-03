@@ -216,6 +216,17 @@ public class BR_MainMenuManager : MonoBehaviour {
     public TextMeshProUGUI coinText;
     private int tempCoin;
 
+
+          [Header("FindAnims")]
+
+        public int OpponentS;
+        public Animator dp;
+        public Animator coinflow;
+        public Animator coinflow1;
+        public Animator numlaod;
+        public Animator nameload;
+        public Animator coinBonus;
+
             [Header("Room")] 
         public TextMeshProUGUI roomGalleEntryPriceText;
         public TextMeshProUGUI roomKandyEntryPriceText;
@@ -228,6 +239,26 @@ public class BR_MainMenuManager : MonoBehaviour {
         public TextMeshProUGUI roomColomboWinPriceText;
         public TextMeshProUGUI roomJaffnaWinPriceText;
         public TextMeshProUGUI roomSigiriWinPriceText;
+
+
+        [Header("Vs")] public GameObject vsScreen;
+        public TextMeshProUGUI vsMsgText;
+        public Button vsBackBtn;
+        public GameObject vsUsersParent;
+        public TextMeshProUGUI vsHomeUsernameText;
+        public TextMeshProUGUI vsHomeUserBetText;
+        public TextMeshProUGUI vsAwayUsernameText;
+        public TextMeshProUGUI vsAwayUserBetText;
+        public TextMeshProUGUI vsTotalBetText;
+        IEnumerator noOpponentFound;
+        IEnumerator OpponentFound;
+        IEnumerator OpponentJoined;
+
+        
+       
+         
+
+ 
 
     private void Awake() {
 
@@ -261,6 +292,7 @@ public class BR_MainMenuManager : MonoBehaviour {
         GetUserProfile();
         //  Getting the player name.
         ShowRooms();
+        PlayerPrefs.SetInt("coin",1000);
         BR_API.SetPlayerName(avatarUsernameText.text);
         string nickName = BR_API.GetPlayerName();
         
@@ -362,6 +394,66 @@ public class BR_MainMenuManager : MonoBehaviour {
             }
         }
 
+    public void RoomsBtn(string room)
+        {
+            //setupScreens();
+            //checking coin balance
+            string msg = "Your account balance is low!\r\nPlease top up your account\r\nto continue playing";
+            int coinBal = PlayerPrefs.GetInt("coin");
+
+            if (coinBal <= 0)
+            {
+                //CheckCoinBalance(msg);
+                print("No coins....");
+            }
+
+            else
+            {
+                
+                if (room == "Colombo" && Constants.ROOM_COLOMBO_ENTRY_PRICE<= coinBal)
+                {
+                    setupScreens();
+                    BR_PhotonLobbyManager.Instance.roomEntryPice = Constants.ROOM_COLOMBO_ENTRY_PRICE;
+                    //PhotonController.Instance.FindRoom();
+                    PlayerPrefs.SetString("roomName", room);
+                }
+                else if (room == "Galle" && Constants.ROOM_GALLE_ENTRY_PRICE <= coinBal)
+                {
+                    setupScreens();
+                    BR_PhotonLobbyManager.Instance.roomEntryPice = Constants.ROOM_GALLE_ENTRY_PRICE;
+                    //PhotonController.Instance.FindRoom();
+                    PlayerPrefs.SetString("roomName", room);
+                }
+                else if (room == "Kandy" && Constants.ROOM_KANDY_ENTRY_PRICE <= coinBal)
+                {
+                    setupScreens();
+                    BR_PhotonLobbyManager.Instance.roomEntryPice = Constants.ROOM_KANDY_ENTRY_PRICE;
+                    //PhotonController.Instance.FindRoom();
+                    PlayerPrefs.SetString("roomName", room);
+                }
+                else if (room == "Sigiri" && Constants.ROOM_SIGIRI_ENTRY_PRICE <= coinBal)
+                {
+                    setupScreens();
+                    BR_PhotonLobbyManager.Instance.roomEntryPice = Constants.ROOM_SIGIRI_ENTRY_PRICE;
+                    //PhotonController.Instance.FindRoom();
+                    PlayerPrefs.SetString("roomName", room);
+                }
+                else if (room == "Jaffna" && Constants.ROOM_JAFFNA_ENTRY_PRICE <= coinBal)
+                {
+                    setupScreens();
+                    BR_PhotonLobbyManager.Instance.roomEntryPice = Constants.ROOM_JAFFNA_ENTRY_PRICE;
+                    //PhotonController.Instance.FindRoom();
+                    PlayerPrefs.SetString("roomName", room);
+                }
+                else
+                {
+                    //CheckCoinBalance(msg);
+                }
+
+                
+            }
+            
+        }
 
         public void ShowRooms()
         {
@@ -1651,4 +1743,390 @@ public class BR_MainMenuManager : MonoBehaviour {
 
     }
 
+
+    //Vs setup
+
+           private void setupScreens()
+        {
+            //onlineMenu.SetActive(false);
+            //NoOpponentScreen.SetActive(false);
+            vsBackBtn.gameObject.SetActive(false);
+            vsBackBtn.interactable = true;
+            vsUsersParent.SetActive(false);
+            vsScreen.SetActive(true);
+        }
+
+        public void VsBackBtn()
+        {
+            vsBackBtn.interactable = false;
+            vsMsgText.text = "Leaveing room...";
+            if (noOpponentFound != null)
+            {
+                StopCoroutine(noOpponentFound);
+            }
+            //ResetBotSettings();
+            PhotonNetwork.LeaveRoom();
+        }
+
+        public void VsOnLeftRoom()
+        {
+            vsBackBtn.gameObject.SetActive(false);
+            vsBackBtn.interactable = true;
+            vsUsersParent.SetActive(false);
+            vsScreen.SetActive(false);
+            //NoOpponentScreen.SetActive(false);
+            //roomScreen.SetActive(true);
+        }
+
+        public void VsJoinedRoom()
+        {
+            
+            //vsTotalBetText.text = PhotonController.Instance.roomEntryPice.ToString("###,###,###")+"LKR";
+
+            //vsHomeUserBetText.text = PhotonController.Instance.roomEntryPice.ToString("###,###,###");
+            //vsAwayUserBetText.text = PhotonController.Instance.roomEntryPice.ToString("###,###,###");
+
+
+            vsBackBtn.gameObject.SetActive(true);
+            vsBackBtn.interactable = true;
+            vsMsgText.text = "Waiting opponent...";
+            vsUsersParent.SetActive(true);
+            
+            //AudioManager.Instance.PlayRollingSound();
+            OpponentStatus = 0;
+            if (PhotonNetwork.PlayerList.Length == 1)
+            {
+                
+                vsHomeUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
+                /*vsHomeUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
+                Debug.Log("UsernameAt1" + PhotonNetwork.PlayerList[0].NickName);
+                vsUsersParent.transform.GetChild(0).GetComponent<Image>().sprite = avatars[(int)PhotonNetwork.PlayerList[0].CustomProperties["avatar"]];*/
+
+                if (noOpponentFound == null)
+                {
+                    noOpponentFound = NoOpponentCountdown();
+                }
+                else
+                {
+                    StopCoroutine(noOpponentFound);
+                    noOpponentFound = NoOpponentCountdown();
+                }
+
+                StartCoroutine(noOpponentFound);
+            }
+            else if (PhotonNetwork.PlayerList.Length == 2)
+            {
+               
+                vsHomeUsernameText.text = PhotonNetwork.PlayerList[1].NickName;
+
+
+                if (OpponentFound == null)
+                {
+                    OpponentFound = GowithOpponentCountdown();
+                }
+                else
+                {
+                    StopCoroutine(OpponentFound);
+                    OpponentFound = GowithOpponentCountdown();
+                }
+
+                StartCoroutine(OpponentFound);
+            }
+        }
+
+        IEnumerator GowithOpponentCountdown()
+        {
+            //dioManager.Instance.StopRollingSound();
+            //vsHomeUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
+            //vsTotalBetText.text = "";
+            yield return new WaitForSeconds(3f);
+            //vsAwayUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
+            //vsTotalBetText.text = (PhotonController.Instance.roomEntryPice * 2).ToString("###,###,###");
+            SetOS();
+            Debug.Log("Opponent found");
+
+            //Debug.Log("UsernameAt2" + PhotonNetwork.PlayerList[0].NickName);
+            //vsAwayUsernameText.text = PhotonNetwork.PlayerList[1].NickName;
+
+            //vsUsersParent.transform.GetChild(0).GetComponent<Image>().sprite = avatars[(int)PhotonNetwork.PlayerList[0].CustomProperties["avatar"]];
+            //vsUsersParent.transform.GetChild(1).GetComponent<Image>().sprite = avatars[(int)PhotonNetwork.PlayerList[1].CustomProperties["avatar"]];
+            yield return new WaitForSeconds(3f);
+            VsStartMatch();
+
+
+            /*
+            if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+                {
+                    PhotonNetwork.CurrentRoom.IsOpen = false;
+                    PhotonNetwork.CurrentRoom.IsVisible = false;
+
+                    vsHomeUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
+                    Debug.Log("UsernameAt2" + PhotonNetwork.PlayerList[0].NickName);
+                    vsAwayUsernameText.text = PhotonNetwork.PlayerList[1].NickName;
+                    VsStartMatch();
+                }
+
+                */
+        }
+
+        IEnumerator NoOpponentCountdown()
+        {
+            yield return new WaitForSeconds(30f);
+            //AudioManager.Instance.StopRollingSound();
+            Debug.Log("No opponent found");
+            //NoOpponentScreen.SetActive(true);
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+        }
+
+public void WaitForOpponentBtn()
+        {
+            if (noOpponentFound == null)
+            {
+                noOpponentFound = KeepWaiting();
+            }
+            else
+            {
+                StopCoroutine(noOpponentFound);
+                noOpponentFound = KeepWaiting();
+            }
+
+            StartCoroutine(noOpponentFound);
+        }
+
+        IEnumerator KeepWaiting()
+        {
+            PhotonNetwork.LeaveRoom();
+            //ResetBotSettings();
+
+            //waitingPanel.SetActive(true);
+            yield return new WaitForSeconds(5f);
+
+            //waitingPanel.SetActive(false);
+
+            //string roomTmp = PlayerPrefs.GetString("roomName");
+            //RoomsBtn(roomTmp);
+        }
+
+        public void leaveBtn()
+        {
+            Debug.Log("Leeaving RRoomMM4");
+            //waitingPanel.SetActive(false);
+            //NoOpponentScreen.SetActive(false);
+            if (noOpponentFound != null)
+            {
+                StopCoroutine(noOpponentFound);
+            }
+
+            PhotonNetwork.LeaveRoom();
+        }
+
+         public void VsOnPlayerJoinedRoom()
+        {
+                /* if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+                {
+                    PhotonNetwork.CurrentRoom.IsOpen = false;
+                    PhotonNetwork.CurrentRoom.IsVisible = false;
+
+                    if (OpponentJoined == null)
+                    {
+                        OpponentJoined = OpponentJoinedCountdown();
+                    }
+                    else
+                    {
+                        StopCoroutine(OpponentJoined);
+                        OpponentJoined = OpponentJoinedCountdown();
+                    }
+
+                    StartCoroutine(OpponentJoined);
+                }*/
+
+                     if (OpponentJoined == null)
+                    {
+                        OpponentJoined = OpponentJoinedCountdown();
+                    }
+                    else
+                    {
+                        StopCoroutine(OpponentJoined);
+                        OpponentJoined = OpponentJoinedCountdown();
+                    }
+
+                    StartCoroutine(OpponentJoined);
+
+        }
+
+        IEnumerator OpponentJoinedCountdown()
+        {
+            SetOS();
+            
+            /*vsHomeUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
+            Debug.Log("UsernameAt2" + PhotonNetwork.PlayerList[0].NickName);
+            vsAwayUsernameText.text = PhotonNetwork.PlayerList[1].NickName;
+    */
+
+            yield return new WaitForSeconds(5f);
+            VsStartMatch();
+        }
+
+        void VsStartMatch()
+        {
+            if (PhotonNetwork.PlayerList.Length == 2)
+            {
+                if (noOpponentFound != null)
+                {
+                    StopCoroutine(noOpponentFound);
+                }
+                if (OpponentFound != null)
+                {
+                    StopCoroutine(OpponentFound);
+                }
+                if (OpponentJoined != null)
+                {
+                    StopCoroutine(OpponentJoined);
+                }
+            }
+
+            int currentCoin = tempCoin;
+            //int newCoin = currentCoin - PhotonController.Instance.roomEntryPice;
+            int newCoin = currentCoin - BR_PhotonLobbyManager.Instance.roomEntryPice;
+
+            StartCoroutine(UpdateUserProfileCoroutine_PUT(newCoin));
+
+            //PlayerPrefs.SetInt("coin", PlayerPrefs.GetInt("coin") - PhotonController.Instance.roomEntryPice);
+            PlayerPrefs.SetInt("coin", PlayerPrefs.GetInt("coin"));
+            PlayerPrefs.Save();
+
+            vsBackBtn.gameObject.SetActive(false);
+
+            
+            
+
+            LeanTween.value(BR_PhotonLobbyManager.Instance.roomEntryPice, 0, 1f).setOnUpdate((float val) =>
+            {
+                vsHomeUserBetText.text = "" + (int)val;
+                vsAwayUserBetText.text = "" + (int)val;
+            });
+
+            LeanTween.value(currentCoin, newCoin, 1f).setOnUpdate((float val) =>
+            {
+                if (val < 1)
+                {
+                    coinText.text = "0";
+                }
+                else
+                {
+                    coinText.text = FormatCurrency((int)val);
+                }
+            });
+
+            /*LeanTween.value(0, PhotonController.Instance.roomEntryPice * 2, 1f).setOnUpdate((float val) =>
+            {
+                vsTotalBetText.text = "" + (int)val;
+            }).setOnComplete(() =>
+            {
+                UpdateCurrencyText();
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    SceneManager.LoadScene("Game");
+                }
+            });*/
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                //SceneManager.LoadScene("BR_Scene_1");
+                PhotonNetwork.LoadLevel(BR_API.GetScene());
+            }
+        }
+
+        private int _opponentStatus;
+
+        public int OpponentStatus
+        {
+            get { return _opponentStatus; }
+            set
+            {
+                _opponentStatus = value;
+
+                if (_opponentStatus == 0)
+                {
+                    dp.Play("0");
+                    coinflow.Play("0");
+                    coinflow1.Play("0");
+                    numlaod.Play("0");
+                    nameload.Play("0");
+                    coinBonus.Play("0");
+                    //vsTotalBetText.text = PhotonController.Instance.roomEntryPice.ToString("###,###,###");
+                    vsAwayUsernameText.text = "";
+                }
+                else if (_opponentStatus == 1)
+                {
+                    //AudioManager.Instance.PlayCoinCollectSound();
+                    dp.Play("1");
+                    coinflow.Play("1");
+                    coinflow1.Play("1");
+                    numlaod.Play("1");
+                    nameload.Play("0");
+                    coinBonus.Play("1");
+                    //vsTotalBetText.text = "";
+                    LeanTween.value(BR_PhotonLobbyManager.Instance.roomEntryPice, BR_PhotonLobbyManager.Instance.roomEntryPice * 2, 1f).setOnUpdate((float val) =>
+                    {
+                        vsTotalBetText.text = "" + (int)val;
+                    }).setOnComplete(() =>
+                    {
+                        UpdateCurrencyText();
+
+                    });
+
+
+
+                    /*if (PhotonNetwork.PlayerList.Length == 1)
+                        vsAwayUsernameText.text = "Name";
+                    else if (PhotonNetwork.PlayerList.Length == 2)
+                        vsAwayUsernameText.text = PhotonNetwork.PlayerList[1].NickName;
+                    */
+
+
+                    /*vsHomeUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
+                    Debug.Log("UsernameAt2" + PhotonNetwork.PlayerList[0].NickName);
+                    vsAwayUsernameText.text = PhotonNetwork.PlayerList[1].NickName;
+            */
+
+
+
+                }
+                else if (_opponentStatus == 2)
+                {
+                    dp.Play("1");
+                    coinflow.Play("0");
+                    coinflow1.Play("0");
+                    numlaod.Play("0");
+                    nameload.Play("1");
+                    coinBonus.Play("1");
+                    vsAwayUsernameText.text = "Name";
+                    //vsTotalBetText.text = (PhotonController.Instance.roomEntryPice * 2).ToString("###,###,###");
+                }
+                else if (_opponentStatus == 3)
+                {
+                    dp.Play("1");
+                    coinflow.Play("0");
+                    coinflow1.Play("0");
+                    numlaod.Play("0");
+                    nameload.Play("1");
+                    coinBonus.Play("1");
+                }
+            }
+        }
+
+        public void endNumberload()
+        {
+            OpponentS = 2;
+            OpponentStatus = 2;
+        }
+
+            public void SetOS()
+        {
+                OpponentStatus = 1;
+        }
+
+    
 }

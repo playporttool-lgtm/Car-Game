@@ -133,6 +133,7 @@ public class BR_PhotonLobbyManager : MonoBehaviourPunCallbacks {
     /// </summary>
     [Header("Region Buttons")]
     public TMP_Dropdown regionDropdown;
+    public int roomEntryPice = 0;
 
 #if PHOTON_UNITY_NETWORKING
 
@@ -388,6 +389,8 @@ public override void OnJoinedRoom() {
 
     //  Game type.
     string gameType = (string)roomProperties["gametype"];
+
+    BR_MainMenuManager.Instance.VsJoinedRoom();
 
     //  Setting the game type according to the room properties.
     switch (gameType) {
@@ -792,6 +795,7 @@ public void TwoPlayerQuickMatchByLocation(string location)
 
     // Join the lobby if we're not in
 
+
 if(location == "Galle"){
     BR_MainMenuManager.Instance.SelectCar(3);
 }
@@ -812,6 +816,7 @@ else if(location == "Sigiri"){
 
     if (!PhotonNetwork.InLobby)
         PhotonNetwork.JoinLobby();
+        BR_MainMenuManager.Instance.vsMsgText.text = "Searching room...";
 
     // Set game type to Race
     BR_API.SetGameType(0);
@@ -826,10 +831,10 @@ else if(location == "Sigiri"){
     Hashtable playerProps = PhotonNetwork.LocalPlayer.CustomProperties;
     playerProps["SearchLocation"] = location;
     PhotonNetwork.LocalPlayer.SetCustomProperties(playerProps);
-
+    //BR_MainMenuManager.Instance.VsJoinedRoom();
     // Opening the joining random room panel
     OpenMenu(joinRandomRoomPanel);
-
+    
     // Setting room properties to search for - INCLUDING LOCATION
     Hashtable expectedRoomProperties = new Hashtable();
     expectedRoomProperties.Add("gametype", "Race");
@@ -838,6 +843,7 @@ else if(location == "Sigiri"){
 
     // Try to join a random room with these criteria
     PhotonNetwork.JoinRandomRoom(expectedRoomProperties, 2);
+    //BR_MainMenuManager.Instance.VsOnPlayerJoinedRoom();
 
 #endif
 }
@@ -1140,7 +1146,7 @@ public void TwoPlayerQuickMatchButton()
             BR_API.SetLapsAmount((int)laps);
 
             //  Loading the target gameplay scene.
-            PhotonNetwork.LoadLevel(BR_API.GetScene());
+            //PhotonNetwork.LoadLevel(BR_API.GetScene());
 
         }
 
