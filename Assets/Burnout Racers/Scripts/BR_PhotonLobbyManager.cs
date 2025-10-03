@@ -793,7 +793,7 @@ public void TwoPlayerQuickMatchByLocation(string location)
     // Join the lobby if we're not in
 
 if(location == "Galle"){
-    BR_MainMenuManager.Instance.SelectCar(4);
+    BR_MainMenuManager.Instance.SelectCar(3);
 }
 else if(location == "Kandy"){
     BR_MainMenuManager.Instance.SelectCar(5);

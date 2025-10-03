@@ -14,7 +14,7 @@ public class RotateWarning : MonoBehaviour
     void Update()
     {
         // If width > height => landscape
-        if (Screen.width > Screen.height)
+        if (Screen.width < Screen.height)
         {
             if (warningPanel != null && !warningPanel.activeSelf)
                 warningPanel.SetActive(true);

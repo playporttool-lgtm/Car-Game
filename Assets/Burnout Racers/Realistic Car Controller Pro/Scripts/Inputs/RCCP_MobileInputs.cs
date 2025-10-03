@@ -73,17 +73,7 @@ public class RCCP_MobileInputs : RCCP_GenericComponent {
     private void Update() {
 
         //  If mobile controller is enabled, set canvas true. Otherwise false.
-        if (!RCCPSettings.mobileControllerEnabled) {
-
-            if (mobileCanvas.activeSelf)
-                mobileCanvas.SetActive(false);
-
-            return;
-
-        }
-
-        if (!mobileCanvas.activeSelf)
-            mobileCanvas.SetActive(true);
+        mobileCanvas.SetActive(true);
 
         if (RCCPSceneManager && RCCPSceneManager.activePlayerVehicle) {
 
