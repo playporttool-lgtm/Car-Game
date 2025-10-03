@@ -104,7 +104,8 @@ public class BR_UI_CanvasManager : MonoBehaviour {
         BR_GameplayManager.OnLocalRacePaused += GameplayManager_OnRacePaused;
 
         //  Getting the player name.
-        playerName.text = BR_API.GetPlayerName();
+        //playerName.text = BR_API.GetPlayerName();
+        playerName.text = PlayerPrefs.GetString("username");
 
     }
 

@@ -13,7 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Networking;
-
+using BEKStudio;
 
 #if PHOTON_UNITY_NETWORKING
 using Photon.Pun;
@@ -92,13 +92,13 @@ public class BR_MainMenuManager : MonoBehaviour {
     public GameObject selectionModeMenu;
     public GameObject selectionSceneOfflineMenu;
     public GameObject purchaseConfirmationMenu;
-    public TextMeshProUGUI coinText;
+    //public TextMeshProUGUI coinText;
 
     /// <summary>
     /// Displaying currency.
     /// </summary>
     [Header("UI Texts")]
-    public TextMeshProUGUI currencyText;
+    //public TextMeshProUGUI currencyText;
 
     /// <summary>
     /// Displaying race points text.
@@ -212,6 +212,22 @@ public class BR_MainMenuManager : MonoBehaviour {
     public UserData userDatas;
     private string apiUrl = "https://api.playport.lk/api/v1/users/profile";
     public TextMeshProUGUI avatarUsernameText;
+    public string playerName;
+    public TextMeshProUGUI coinText;
+    private int tempCoin;
+
+            [Header("Room")] 
+        public TextMeshProUGUI roomGalleEntryPriceText;
+        public TextMeshProUGUI roomKandyEntryPriceText;
+        public TextMeshProUGUI roomColomboEntryPriceText;
+        public TextMeshProUGUI roomJaffnaEntryPriceText;
+        public TextMeshProUGUI roomSigiriEntryPriceText;
+
+        public TextMeshProUGUI roomGalleWinPriceText;
+        public TextMeshProUGUI roomKandyWinPriceText;
+        public TextMeshProUGUI roomColomboWinPriceText;
+        public TextMeshProUGUI roomJaffnaWinPriceText;
+        public TextMeshProUGUI roomSigiriWinPriceText;
 
     private void Awake() {
 
@@ -244,7 +260,10 @@ public class BR_MainMenuManager : MonoBehaviour {
         ShowLoadingScreen();
         GetUserProfile();
         //  Getting the player name.
+        ShowRooms();
+        BR_API.SetPlayerName(avatarUsernameText.text);
         string nickName = BR_API.GetPlayerName();
+        
 
         //  If it's not empty, open the main menu. Otherwise open the welcome menu.
         if (BR_API.IsFirstGameplay()) {
@@ -329,6 +348,56 @@ public class BR_MainMenuManager : MonoBehaviour {
             return amount.ToString();
         }
     }
+   public void UpdateCurrencyText()
+        {
+            if (PlayerPrefs.GetInt("coin") == 0)
+            {
+                coinText.text = "0";
+
+              
+            }
+            else
+            {
+                coinText.text = FormatCurrency(PlayerPrefs.GetInt("coin", 0));
+            }
+        }
+
+
+        public void ShowRooms()
+        {
+            /*roomLondonEntryPriceText.text = Constants.ROOM_LONDON_ENTRY_PRICE.ToString("###,###,###");
+            roomLondonWinPriceText.text = (Constants.ROOM_LONDON_ENTRY_PRICE * 2).ToString("###,###,###");
+            roomParisEntryPriceText.text = Constants.ROOM_PARIS_ENTRY_PRICE.ToString("###,###,###");
+            roomParisWinPriceText.text = (Constants.ROOM_PARIS_ENTRY_PRICE * 2).ToString("###,###,###");
+            roomBerlinEntryPriceText.text = Constants.ROOM_BERLIN_ENTRY_PRICE.ToString("###,###,###");
+            roomBerlinWinPriceText.text = (Constants.ROOM_BERLIN_ENTRY_PRICE * 2).ToString("###,###,###");
+
+ 
+*/
+            roomGalleEntryPriceText.text = "Entry Fee: "+ Constants.ROOM_GALLE_ENTRY_PRICE.ToString() + "LKR";
+            roomKandyEntryPriceText.text = "Entry Fee: " + Constants.ROOM_KANDY_ENTRY_PRICE.ToString() + "LKR";
+            roomColomboEntryPriceText.text = "Entry Fee: " + Constants.ROOM_COLOMBO_ENTRY_PRICE.ToString() + "LKR";
+            roomJaffnaEntryPriceText.text = "Entry Fee: " + Constants.ROOM_JAFFNA_ENTRY_PRICE.ToString() + "LKR";
+            roomSigiriEntryPriceText.text = "Entry Fee: " + Constants.ROOM_SIGIRI_ENTRY_PRICE.ToString() + "LKR";
+
+            roomGalleWinPriceText.text =  Constants.ROOM_GALLE_WIN_PRICE.ToString() + "LKR";
+            roomKandyWinPriceText.text = Constants.ROOM_KANDY_WIN_PRICE.ToString() + "LKR";
+            roomColomboWinPriceText.text =  Constants.ROOM_COLOMBO_WIN_PRICE.ToString() + "LKR";
+            roomJaffnaWinPriceText.text =  Constants.ROOM_JAFFNA_WIN_PRICE.ToString() + "LKR";
+            roomSigiriWinPriceText.text = Constants.ROOM_SIGIRI_WIN_PRICE.ToString() + "LKR";
+
+
+            //PhotonController.Instance.whichMode = "carrom";
+            //Debug.Log("Show rooms");
+            //vsScreen.SetActive(false);
+            //NoOpponentScreen.SetActive(false);
+            //shopScreen.SetActive(false);
+
+            //mainScreen.SetActive(false);
+            //usernameScreen.SetActive(false);
+            //roomScreen.SetActive(true);
+        }
+
 
     // API Response structure
     [System.Serializable]
@@ -599,6 +668,58 @@ public class BR_MainMenuManager : MonoBehaviour {
         }
     }
 
+    [System.Serializable]
+        public class UpdateProfileRequest
+        {
+            public int total_coins;
+        }
+        public IEnumerator UpdateUserProfileCoroutine_PUT(int newTotalCoins)
+        {
+            var update = new UpdateProfileRequest { total_coins = newTotalCoins };
+            string json = JsonUtility.ToJson(update);
+
+            string token = GetTokenFromURL();
+
+            // UnityWebRequest.Put creates an UploadHandlerRaw for you, but we still must set Content-Type
+            using (var request = UnityWebRequest.Put("https://api.playport.lk/api/v1/users/profile", json))
+            {
+                request.SetRequestHeader("Authorization", "Bearer " + token);
+                request.SetRequestHeader("Content-Type", "application/json");
+                request.downloadHandler = new DownloadHandlerBuffer();
+
+                yield return request.SendWebRequest();
+
+                if (request.result == UnityWebRequest.Result.ConnectionError ||
+                    request.result == UnityWebRequest.Result.ProtocolError)
+                {
+                    Debug.LogError($"[UpdateUserProfile:PUT] Error: {request.error} (HTTP {request.responseCode})");
+                    Debug.LogError($"[UpdateUserProfile:PUT] Body: {request.downloadHandler.text}");
+                    yield break;
+                }
+
+                string jsonResponse = request.downloadHandler.text;
+                Debug.Log("[UpdateUserProfile:PUT] Raw Response: " + jsonResponse);
+
+                ApiResponse response = JsonUtility.FromJson<ApiResponse>(jsonResponse);
+                if (response != null && response.success)
+                {
+                    Debug.Log("[UpdateUserProfile:PUT] Success! Message: " + response.message);
+                    Debug.Log("[UpdateUserProfile:PUT] New Total Coins: " + response.data.total_coins);
+                    OnProfileFetched(response.data);
+                }
+                else
+                {
+                    Debug.LogWarning("[UpdateUserProfile:PUT] API reported success=false");
+                }
+            }
+
+            UpdateCurrencyText();
+        }
+
+        public void BuyNewCoins(){
+            UpdateUserProfileCoroutine_PUT(450);
+        }
+
     public IEnumerator GetUserProfileCoroutine()
     {
 
@@ -647,7 +768,9 @@ public class BR_MainMenuManager : MonoBehaviour {
                 {
                     Debug.Log("API returned=false");
                     UMdata = userDatas;
-                    avatarUsernameText.text = LimitNameText("SupunTesting");
+                    playerName = "SupunTesting";
+                    avatarUsernameText.text = LimitNameText(playerName);
+                    PlayerPrefs.SetString("username", playerName);
                 }
 
             }
@@ -676,7 +799,9 @@ public class BR_MainMenuManager : MonoBehaviour {
                 {
                     Debug.Log("API returned=false");
                     UMdata = userDatas;
-                    avatarUsernameText.text = "Mahinda";
+                    playerName = "Mahinda";
+                    avatarUsernameText.text = LimitNameText(playerName);
+                    PlayerPrefs.SetString("username", playerName);
                 }
             }
         }
@@ -689,25 +814,25 @@ public class BR_MainMenuManager : MonoBehaviour {
 
         // Example: Display username in UI
         // usernameText.text = userData.username;
-        //coinsText.text = userData.total_coins.ToString();
+        coinText.text = userData.total_coins.ToString();
 
         UMdata = userData;
         Debug.Log("Profile fetched and stored.");
+        playerName = UMdata.username;
+        PlayerPrefs.SetString("username", playerName);
         avatarUsernameText.text = LimitNameText(UMdata.username);
-        PlayerPrefs.SetString("username", avatarUsernameText.text);
+
+        tempCoin = UMdata.total_coins;
 
 
-        //tempCoin = UMdata.total_coins;
-
-
-        //PlayerPrefs.SetInt("coin", tempCoin);
+        PlayerPrefs.SetInt("coin", tempCoin);
 
         PlayerPrefs.Save();
         PhotonNetwork.NickName = UMdata.username;
 
 
 
-        //UpdateCurrencyText();
+        UpdateCurrencyText();
 
     }
 
@@ -839,7 +964,7 @@ public class BR_MainMenuManager : MonoBehaviour {
     private void Update() {
 
         //  Displaying money text.
-        currencyText.text = "$ " + playerMoney.ToString();
+        //currencyText.text = "$ " + playerMoney.ToString();
 
         //  Displaying race points text.
         racePointsText.text = (racePoints > 0 ? "+" : "") + racePoints.ToString();
