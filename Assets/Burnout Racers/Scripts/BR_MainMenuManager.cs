@@ -717,7 +717,7 @@ public class BR_MainMenuManager : MonoBehaviour {
         }
 
         public void BuyNewCoins(){
-            UpdateUserProfileCoroutine_PUT(450);
+            StartCoroutine(UpdateUserProfileCoroutine_PUT(450));
         }
 
     public IEnumerator GetUserProfileCoroutine()
@@ -1265,6 +1265,7 @@ public class BR_MainMenuManager : MonoBehaviour {
     public void SelectCar() {
 
         BR_API.SetVehicle(currentPlayerCarIndex);
+        
         SpawnPlayer();
 
     }
