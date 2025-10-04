@@ -17,7 +17,7 @@ public class numberload : MonoBehaviour
     
     public void MyEndNumberload()
     {
-        //FindAnyObjectByType<MenuController>().endNumberload();
+        FindAnyObjectByType<BR_MainMenuManager>().endNumberload();
     }   
     
 }

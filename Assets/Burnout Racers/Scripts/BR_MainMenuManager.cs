@@ -1781,57 +1781,55 @@ public class BR_MainMenuManager : MonoBehaviour {
         public void VsJoinedRoom()
         {
             
-            //vsTotalBetText.text = PhotonController.Instance.roomEntryPice.ToString("###,###,###")+"LKR";
+           vsBackBtn.gameObject.SetActive(true);
+    vsBackBtn.interactable = true;
+    vsMsgText.text = "Waiting opponent...";
+    vsUsersParent.SetActive(true);
+    
+    OpponentStatus = 0; // Initial state for both players
+    
+    if (PhotonNetwork.PlayerList.Length == 1)
+    {
+        // First player (room creator) - wait for opponent
+        vsHomeUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
 
-            //vsHomeUserBetText.text = PhotonController.Instance.roomEntryPice.ToString("###,###,###");
-            //vsAwayUserBetText.text = PhotonController.Instance.roomEntryPice.ToString("###,###,###");
+        if (noOpponentFound == null)
+        {
+            noOpponentFound = NoOpponentCountdown();
+        }
+        else
+        {
+            StopCoroutine(noOpponentFound);
+            noOpponentFound = NoOpponentCountdown();
+        }
 
+        StartCoroutine(noOpponentFound);
+    }
+    else 
+    {
+        // Second player joined - UPDATE BOTH PLAYERS
+        vsHomeUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
+        vsAwayUsernameText.text = PhotonNetwork.PlayerList[1].NickName;
+        
+        // Stop the "no opponent" countdown for the room creator
+        if (noOpponentFound != null)
+        {
+            StopCoroutine(noOpponentFound);
+        }
 
-            vsBackBtn.gameObject.SetActive(true);
-            vsBackBtn.interactable = true;
-            vsMsgText.text = "Waiting opponent...";
-            vsUsersParent.SetActive(true);
-            
-            //AudioManager.Instance.PlayRollingSound();
-            OpponentStatus = 0;
-            if (PhotonNetwork.PlayerList.Length == 1)
-            {
-                
-                vsHomeUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
-                /*vsHomeUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
-                Debug.Log("UsernameAt1" + PhotonNetwork.PlayerList[0].NickName);
-                vsUsersParent.transform.GetChild(0).GetComponent<Image>().sprite = avatars[(int)PhotonNetwork.PlayerList[0].CustomProperties["avatar"]];*/
+        if (OpponentFound == null)
+        {
+            OpponentFound = GowithOpponentCountdown();
+        }
+        else
+        {
+            StopCoroutine(OpponentFound);
+            OpponentFound = GowithOpponentCountdown();
+        }
+        vsMsgText.text = OpponentStatus + "in the VsJoinedRoom";
 
-                if (noOpponentFound == null)
-                {
-                    noOpponentFound = NoOpponentCountdown();
-                }
-                else
-                {
-                    StopCoroutine(noOpponentFound);
-                    noOpponentFound = NoOpponentCountdown();
-                }
-
-                StartCoroutine(noOpponentFound);
-            }
-            else if (PhotonNetwork.PlayerList.Length == 2)
-            {
-               
-                vsHomeUsernameText.text = PhotonNetwork.PlayerList[1].NickName;
-
-
-                if (OpponentFound == null)
-                {
-                    OpponentFound = GowithOpponentCountdown();
-                }
-                else
-                {
-                    StopCoroutine(OpponentFound);
-                    OpponentFound = GowithOpponentCountdown();
-                }
-
-                StartCoroutine(OpponentFound);
-            }
+        StartCoroutine(OpponentFound);
+    }
         }
 
         IEnumerator GowithOpponentCountdown()
@@ -1843,6 +1841,7 @@ public class BR_MainMenuManager : MonoBehaviour {
             //vsAwayUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
             //vsTotalBetText.text = (PhotonController.Instance.roomEntryPice * 2).ToString("###,###,###");
             SetOS();
+            vsMsgText.text = OpponentStatus + "in the GowithOpponentCountdown";
             Debug.Log("Opponent found");
 
             //Debug.Log("UsernameAt2" + PhotonNetwork.PlayerList[0].NickName);
@@ -1923,53 +1922,59 @@ public void WaitForOpponentBtn()
 
          public void VsOnPlayerJoinedRoom()
         {
-                /* if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        Debug.Log($"[MainMenu] VsOnPlayerJoinedRoom called. PlayerList.Length: {PhotonNetwork.PlayerList.Length}");
+            
+            // Stop waiting for opponent countdown
+            if (noOpponentFound != null)
+            {
+                Debug.Log("[MainMenu] Stopping NoOpponentCountdown coroutine");
+                StopCoroutine(noOpponentFound);
+                noOpponentFound = null;
+            }
+            
+            // Update UI for both players
+            if (PhotonNetwork.PlayerList.Length >= 2)
+            {
+                Debug.Log("[MainMenu] Both players present, setting up match");
+                
+                vsHomeUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
+                vsAwayUsernameText.text = PhotonNetwork.PlayerList[1].NickName;
+                
+                PhotonNetwork.CurrentRoom.IsOpen = false;
+                PhotonNetwork.CurrentRoom.IsVisible = false;
+                
+                if (OpponentJoined != null)
                 {
-                    PhotonNetwork.CurrentRoom.IsOpen = false;
-                    PhotonNetwork.CurrentRoom.IsVisible = false;
-
-                    if (OpponentJoined == null)
-                    {
-                        OpponentJoined = OpponentJoinedCountdown();
-                    }
-                    else
-                    {
-                        StopCoroutine(OpponentJoined);
-                        OpponentJoined = OpponentJoinedCountdown();
-                    }
-
-                    StartCoroutine(OpponentJoined);
-                }*/
-
-                     if (OpponentJoined == null)
-                    {
-                        OpponentJoined = OpponentJoinedCountdown();
-                    }
-                    else
-                    {
-                        StopCoroutine(OpponentJoined);
-                        OpponentJoined = OpponentJoinedCountdown();
-                    }
-
-                    StartCoroutine(OpponentJoined);
+                    StopCoroutine(OpponentJoined);
+                }
+                
+                OpponentJoined = OpponentJoinedCountdown();
+                Debug.Log("[MainMenu] Starting OpponentJoinedCountdown");
+                StartCoroutine(OpponentJoined);
+            }
+            else
+            {
+                Debug.LogWarning($"[MainMenu] Not enough players yet: {PhotonNetwork.PlayerList.Length}");
+            }
 
         }
 
         IEnumerator OpponentJoinedCountdown()
         {
+             Debug.Log("[MainMenu] OpponentJoinedCountdown started");
             SetOS();
+            Debug.Log($"[MainMenu] After SetOS(), OpponentStatus = {OpponentStatus}");
+            vsMsgText.text = OpponentStatus + " in the OpponentJoinedCountdown";
             
-            /*vsHomeUsernameText.text = PhotonNetwork.PlayerList[0].NickName;
-            Debug.Log("UsernameAt2" + PhotonNetwork.PlayerList[0].NickName);
-            vsAwayUsernameText.text = PhotonNetwork.PlayerList[1].NickName;
-    */
-
             yield return new WaitForSeconds(5f);
+            
+            Debug.Log("[MainMenu] Starting match from OpponentJoinedCountdown");
             VsStartMatch();
         }
 
         void VsStartMatch()
         {
+            vsMsgText.text = OpponentStatus + "in the VsStartMatch";
             if (PhotonNetwork.PlayerList.Length == 2)
             {
                 if (noOpponentFound != null)
@@ -2030,7 +2035,7 @@ public void WaitForOpponentBtn()
                     SceneManager.LoadScene("Game");
                 }
             });*/
-
+            //PhotonNetwork.LoadLevel(BR_API.GetScene());
             if (PhotonNetwork.IsMasterClient)
             {
                 //SceneManager.LoadScene("BR_Scene_1");

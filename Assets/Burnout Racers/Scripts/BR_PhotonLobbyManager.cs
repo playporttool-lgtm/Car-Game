@@ -568,21 +568,31 @@ public override void OnJoinRandomFailed(short returnCode, string message) {
     /// <param name="newPlayer"></param>
     public override void OnPlayerEnteredRoom(Player newPlayer) {
 
-        //  Clearing the player list view.
-        ClearPlayerListView();
+            Debug.Log($"[PhotonLobby] Player entered room: {newPlayer.NickName}, Total players: {PhotonNetwork.CurrentRoom.PlayerCount}");
 
-        //  Clearing the players in room.
-        playersInRoom.Clear();
+            //  Clearing the player list view.
+            ClearPlayerListView();
 
-        //  For each player in the room, add it to the list.
-        foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
-            playersInRoom.Add(player);
+            //  Clearing the players in room.
+            playersInRoom.Clear();
 
-        //  Updating the player list view.
-        UpdatePlayerListView(playersInRoom);
+            //  For each player in the room, add it to the list.
+            foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+                playersInRoom.Add(player);
 
-        //  Checking ready and start buttons.
-        CheckButtonsInRoom();
+            //  Updating the player list view.
+            UpdatePlayerListView(playersInRoom);
+
+            //  Checking ready and start buttons.
+            CheckButtonsInRoom();
+
+            // CRITICAL: Notify MainMenuManager that a player joined
+            if (BR_MainMenuManager.Instance != null) {
+                Debug.Log("[PhotonLobby] Calling VsOnPlayerJoinedRoom on MainMenuManager");
+                BR_MainMenuManager.Instance.VsOnPlayerJoinedRoom();
+            } else {
+                Debug.LogError("[PhotonLobby] BR_MainMenuManager.Instance is NULL!");
+            }
 
     }
 
